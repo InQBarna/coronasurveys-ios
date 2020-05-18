@@ -1,0 +1,42 @@
+Device ID	Device Name
+00008020-001055210C38002E	Alexandros Katsaprakakis’s iPhone
+67cd4f81bfb1e17a0e2297ed559476da03e0cf4d	Alexandros's iPhone
+a858775239be95480db079b2cf3b4e38eaa19f9c	Alexis AppleWatch
+8d65d356aa2118431d30b443cfe8b989c9e9a703	Carlos - iPhone 7
+00008020-0011186A1138003A	Carlos GG - iPhone XR
+d9a8e5e1487b509873e595e21da4eabf67f85e37	Expertus - DNA015
+0a9c3e7b3486ac4bffd881d7daba99d4e875a4aa	Expertus - DNA12
+8e0674771e8d1a92ef67b56c72e2f862846cc35b	Expertus - iPad mini 3 II
+9bdff9d21d6d1e3f3af59529f381bda5d7fc58b8	Expertus - iPad mini 3 III
+64a891f7205a1ac9bcb63dc5767f5a29b4792d27	Expertus - iPad Mini IV
+716b03f6eb8ce575bc2b2083bc6407cc69f7cf48	iggy's AppleWatch 38mm
+f8e91d5283e7ec229ddf58933926a7f2faf13410	iggy's Nike AppleWatch 38mm
+d309a0b7176f7eeb0c3bd58821daac39a17d9d1a	Inqbarna’s iPad
+00008027-001264442106802E	iPad de: Josep
+0962e92eda71a49ef4dbb2e660646ea9ebc2a1cc	iPad Mini Retina (DRR)
+18e07a57c92b1f0d5ccb77ff275d66ecd4da1e15	iPhone 6 de Sergi
+00008020-000604EC2232002E	iPhone de: Josep
+879c0c5380e1381e092dbd0d86a06042cb6e1ae1	iPhone X (DRR)
+55829e4f170cfc28d86a78b2ce6b900334799355	IQ - Juan iPhone 6
+3461d3810cf7f90673ec239762ba03d69d8bfe61	IQ-iPad-mini-IQB
+8319cc1e4ef3ed720083ae3c7ea946779e162f7f	IQ-iPad3-1
+684225b97cea289ab58b4d7e66463ca58018102c	IQ-iPhone5s-Hector
+80a82dd611c425515b6c3362faab2ebade07cb73	IQ-iPhone6s-Raul
+06bf11795424bebfd396c207285cc2b201c91acb	IQ-iPod4-2
+b9b518cb0d323014b08764437f469c583df22a12	IQ-iPod5-1
+00008020-0010390002D8002E	IQB - Albert Vila - iPhone Xs
+2446608338e5ea1c6d0028b1f379e29828b6c540	IQB - iPad Air 2
+00008020-000254210C38002E	IQB - iPhone XR - Nacho
+0e99ddc0b71aac2b08f58066b62775f8217dadba	IQB AppleTV
+53a978625e5afcf67af20cffde467aba167b2c17	iSergiPhone8p
+021117d7eba2ddaf27ed1587a381a56437abca2c	javier.villacampa@stockcrowd.com
+e81b74d138268264aa5245b77aa6f83dc19b74d9	Jordi GG - iPhone 6s
+a5ab9b68602e2f1b85a96edc8633d799d18d8295	Josep Bordes Jové’s iPad
+27c1af996addfbe33ef5d3f307b009d0b7bdb50d	Lucas - iPhone 6s
+ee087852cdcda7e28c66f9d28adbae5f357b1ba0	Marcos Bocanegra
+00008020-000664C22241002E	MuscleMixes - Denise - iPhone XR
+b3075221cddd2dd8aa395215b84eff8c78d6afbf	MuscleMixes - Scott Margin - iPhone X
+00008020-0005713A0C9A002E	Santi iPhone  Xr
+a113c5c3b87b294cbcc539d7c2bfba98548dc5bd	sense4care - iPhone 6 - Carlos
+2a15bb01f61425044fd35656304ad4476ab03fe0	sergi.pallares@stockcrowd.com
+45e07359c33bd16113fcd07c6c1db4b0805f709f	Vincent - iPad Pro - (Muscle Mixes)
