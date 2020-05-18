@@ -1,20 +1,24 @@
 PODS:
+  - CountryPickerView (3.1.2)
   - SwiftFormat/CLI (0.44.10)
   - SwiftLint (0.39.2)
 
 DEPENDENCIES:
+  - CountryPickerView
   - SwiftFormat/CLI
   - SwiftLint
 
 SPEC REPOS:
   trunk:
+    - CountryPickerView
     - SwiftFormat
     - SwiftLint
 
 SPEC CHECKSUMS:
+  CountryPickerView: 08ff5f391143aa79e2ae21b0eaa5c15395a80d22
   SwiftFormat: b72e592ea0979aeee53f6052abff291181364933
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
 
-PODFILE CHECKSUM: 0c6b17583b8f5cbb11835a2a7be2963456594a38
+PODFILE CHECKSUM: 3a3ae4783944b552a72e547e339e05942bb45858
 
 COCOAPODS: 1.9.1

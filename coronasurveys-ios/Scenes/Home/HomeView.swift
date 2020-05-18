@@ -6,7 +6,12 @@
 //  Copyright © 2020 Inqbarna. All rights reserved.
 //
 
+import CountryPickerView
 import UIKit
+
+protocol HomeViewDelegate: AnyObject {
+    func didTapStartForm()
+}
 
 struct HomeViewVM: Equatable {}
 
@@ -17,6 +22,8 @@ class HomeView: UIView, CleanView {
     var viewModel: HomeViewVM = HomeView.emptySkeleton
     var viewState: ViewState = .empty
 
+    weak var delegate: HomeViewDelegate?
+
     // MARK: UI
 
     private lazy var tableView: UITableView = {
@@ -25,6 +32,61 @@ class HomeView: UIView, CleanView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
         return tableView
+    }()
+
+    private var bottomView: UIView = {
+        let view = UIView()
+        view.backgroundColor = Color.white
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        return view
+    }()
+
+    private var bottomSafeView: UIView = {
+        let view = UIView()
+        view.backgroundColor = Color.white
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        return view
+    }()
+
+    private lazy var acceptOrderButton: LargeButton = {
+        let button = LargeButton(style: .filled, showSpinnerWhenTapped: false)
+        button.setTitle(NSLocalizedString("start_form", comment: ""), for: .normal)
+        button.addTarget(self, action: #selector(startForm), for: .touchUpInside)
+        button.heightAnchor.constraint(equalToConstant: Layout.buttonHeight).isActive = true
+
+        return button
+    }()
+
+    private lazy var countryPicker: CountryPickerView = {
+        let picker = CountryPickerView()
+        picker.showPhoneCodeInView = false
+        picker.showCountryNameInView = true
+        picker.showCountryCodeInView = false
+        picker.font = .font(.body1)
+        return picker
+    }()
+
+    private lazy var countryPickerIndications: UILabel = {
+        let label = UILabel()
+        label.font = .font(.caption)
+        label.textColor = Color.midGray
+        label.text = NSLocalizedString("select_your_country", comment: "")
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        return label
+    }()
+
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.alignment = .fill
+        stackView.distribution = .equalCentering
+        stackView.spacing = 10
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+
+        return stackView
     }()
 
     // MARK: Object lifecycle
@@ -44,7 +106,8 @@ class HomeView: UIView, CleanView {
 
     private func setupView() {
         backgroundColor = Color.white
-        [tableView].forEach { addSubview($0) }
+        [tableView, bottomView, bottomSafeView, stackView].forEach { addSubview($0) }
+        [countryPickerIndications, countryPicker, acceptOrderButton].forEach { stackView.addArrangedSubview($0) }
     }
 
     private func setupConstraints() {
@@ -53,6 +116,22 @@ class HomeView: UIView, CleanView {
         } else {
             tableView.constraintsToSuperview()
         }
+
+        NSLayoutConstraint.activate([
+            bottomView.bottomAnchor.constraint(equalTo: bottomSafeView.topAnchor),
+            bottomView.leftAnchor.constraint(equalTo: leftAnchor),
+            bottomView.rightAnchor.constraint(equalTo: rightAnchor),
+            bottomView.topAnchor.constraint(equalTo: stackView.topAnchor, constant: -10),
+
+            bottomSafeView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            bottomSafeView.leftAnchor.constraint(equalTo: leftAnchor),
+            bottomSafeView.rightAnchor.constraint(equalTo: rightAnchor),
+            bottomSafeView.topAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
+
+            stackView.bottomAnchor.constraint(equalTo: bottomSafeView.topAnchor, constant: -10),
+            stackView.leftAnchor.constraint(equalTo: layoutMarginsGuide.leftAnchor),
+            stackView.rightAnchor.constraint(equalTo: layoutMarginsGuide.rightAnchor)
+        ])
     }
 
     // MARK: Clean view
@@ -70,4 +149,10 @@ class HomeView: UIView, CleanView {
     func prepareForError() {}
 
     func prepareForEmpty() {}
+
+    // MARK: Helpers
+
+    @objc private func startForm() {
+        delegate?.didTapStartForm()
+    }
 }

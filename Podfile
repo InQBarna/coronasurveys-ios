@@ -8,4 +8,5 @@ target 'coronasurveys-ios' do
   # Pods for coronasurveys-ios
   pod 'SwiftLint'
   pod 'SwiftFormat/CLI'
+  pod 'CountryPickerView'
 end

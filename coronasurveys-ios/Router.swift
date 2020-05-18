@@ -48,6 +48,7 @@ class Router: NSObject {
         homeDataStore.context = context ?? generateInitialContext()
 
         let navigationController = UINavigationController(rootViewController: homeViewController)
+        navigationController.navigationBar.tintColor = Color.black
         window?.rootViewController = navigationController
     }
 

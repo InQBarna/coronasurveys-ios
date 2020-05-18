@@ -25,6 +25,14 @@ struct Color {
         }
     }
 
+    static var ziggurat: UIColor? {
+        if #available(iOS 11.0, *) {
+            return UIColor(named: "smalt-blue")
+        } else {
+            return UIColor(red: 0.714, green: 0.831, blue: 0.859, alpha: 1)
+        }
+    }
+
     // MARK: Status
 
     static var correct: UIColor? {

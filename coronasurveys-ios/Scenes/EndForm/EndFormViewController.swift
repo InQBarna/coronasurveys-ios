@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  EndFormViewController.swift
 //  coronasurveys-ios
 //
 //  Created by Josep Bordes Jové on 18/05/2020.
@@ -12,21 +12,13 @@
 
 import UIKit
 
-protocol HomeDisplayLogic: AnyObject {
-    func displayView(viewModel: Home.PrepareView.ViewModel)
+protocol EndFormDisplayLogic: AnyObject {
+    func displayView(viewModel: EndForm.PrepareView.ViewModel)
 }
 
-class HomeViewController: UIViewController, HomeDisplayLogic, AutoUpdateContext {
-    var interactor: HomeBusinessLogic?
-    var router: (NSObjectProtocol & HomeRoutingLogic & HomeDataPassing)?
-
-    // MARK: View
-
-    private lazy var homeView: HomeView = {
-        let view = HomeView()
-        view.delegate = self
-        return view
-    }()
+class EndFormViewController: UIViewController, EndFormDisplayLogic, AutoUpdateContext {
+    var interactor: EndFormBusinessLogic?
+    var router: (NSObjectProtocol & EndFormRoutingLogic & EndFormDataPassing)?
 
     // MARK: AutoUpdateContext
 
@@ -44,6 +36,12 @@ class HomeViewController: UIViewController, HomeDisplayLogic, AutoUpdateContext 
         }
     }
 
+    // MARK: UI
+
+    private lazy var endFormView: EndFormView = {
+        EndFormView()
+    }()
+
     // MARK: Object lifecycle
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -60,9 +58,9 @@ class HomeViewController: UIViewController, HomeDisplayLogic, AutoUpdateContext 
 
     private func setup() {
         let viewController = self
-        let interactor = HomeInteractor()
-        let presenter = HomePresenter()
-        let router = HomeRouter()
+        let interactor = EndFormInteractor()
+        let presenter = EndFormPresenter()
+        let router = EndFormRouter()
         viewController.interactor = interactor
         viewController.router = router
         interactor.presenter = presenter
@@ -75,47 +73,22 @@ class HomeViewController: UIViewController, HomeDisplayLogic, AutoUpdateContext 
 
     override func loadView() {
         super.loadView()
-        view = homeView
+        view = endFormView
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setupNavigationController()
         prepareView()
-    }
-
-    // MARK: Setup methods
-
-    private func setupNavigationController() {
-        let settingsButton = UIBarButtonItem(image: Icon.settings, style: .plain, target: self, action: #selector(settingsTapped))
-        navigationItem.rightBarButtonItem = settingsButton
     }
 
     // MARK: Prepare view
 
     func prepareView() {
-        let request = Home.PrepareView.Request()
+        let request = EndForm.PrepareView.Request()
         interactor?.prepareView(request: request)
     }
 
-    func displayView(viewModel: Home.PrepareView.ViewModel) {
+    func displayView(viewModel: EndForm.PrepareView.ViewModel) {
         // nameTextField.text = viewModel.name
-    }
-
-    // MARK: Helpers
-
-    @objc private func settingsTapped() {
-        router?.routeToSettings()
-    }
-
-    private func openCountry() {}
-}
-
-// MARK: HomeViewDelegate
-
-extension HomeViewController: HomeViewDelegate {
-    func didTapStartForm() {
-        router?.routeToForm()
     }
 }

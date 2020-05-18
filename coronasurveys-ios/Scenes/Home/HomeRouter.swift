@@ -13,7 +13,8 @@
 import UIKit
 
 @objc protocol HomeRoutingLogic {
-    // func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToSettings()
+    func routeToForm()
 }
 
 protocol HomeDataPassing {
@@ -26,32 +27,40 @@ class HomeRouter: NSObject, HomeRoutingLogic, HomeDataPassing {
 
     // MARK: Routing
 
-    // func routeToSomewhere(segue: UIStoryboardSegue?)
-    // {
-    //  if let segue = segue {
-    //    let destinationVC = segue.destination as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //  } else {
-    //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-    //  }
-    // }
+    func routeToSettings() {
+        let destinationVC = SettingsViewController()
+        var destinationDS = destinationVC.router!.dataStore!
+        passDataToSettings(source: dataStore!, destination: &destinationDS)
+        navigateToSettings(source: viewController!, destination: destinationVC)
+    }
+
+    func routeToForm() {
+        let destinationVC = GenericWebViewViewController()
+        var destinationDS = destinationVC.router!.dataStore!
+        passDataToForm(source: dataStore!, destination: &destinationDS)
+        navigateToForm(source: viewController!, destination: destinationVC)
+    }
 
     // MARK: Navigation
 
-    // func navigateToSomewhere(source: HomeViewController, destination: SomewhereViewController)
-    // {
-    //  source.show(destination, sender: nil)
-    // }
+    func navigateToSettings(source: HomeViewController, destination: SettingsViewController) {
+        let navigationController = UINavigationController(rootViewController: destination)
+        source.present(navigationController, animated: true, completion: nil)
+    }
+
+    func navigateToForm(source: HomeViewController, destination: GenericWebViewViewController) {
+        let navigationController = UINavigationController(rootViewController: destination)
+        source.present(navigationController, animated: true, completion: nil)
+    }
 
     // MARK: Passing data
 
-    // func passDataToSomewhere(source: HomeDataStore, destination: inout SomewhereDataStore)
-    // {
-    //  destination.name = source.name
-    // }
+    func passDataToSettings(source: HomeDataStore, destination: inout SettingsDataStore) {
+        destination.context = source.context
+    }
+
+    func passDataToForm(source: HomeDataStore, destination: inout GenericWebViewDataStore) {
+        destination.context = source.context
+        destination.webViewURL = "https://mobile.coronasurveys.org/es"
+    }
 }
