@@ -9,4 +9,6 @@ target 'coronasurveys-ios' do
   pod 'SwiftLint'
   pod 'SwiftFormat/CLI'
   pod 'CountryPickerView'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
 end
