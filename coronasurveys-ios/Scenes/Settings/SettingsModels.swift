@@ -17,11 +17,26 @@ enum Settings {
 
     enum PrepareView {
         struct Request {}
-
-        struct Response {}
+        struct Response {
+            let hasScheduledNotification: Bool
+        }
 
         struct ViewModel {
             let title: String
+            let sections: [SettingsContent]
+        }
+    }
+
+    enum ToggleNotification {
+        struct Request {
+            let newValue: Bool
+        }
+
+        struct Response {
+            let hasScheduledNotification: Bool
+        }
+
+        struct ViewModel {
             let sections: [SettingsContent]
         }
     }

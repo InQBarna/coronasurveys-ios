@@ -27,7 +27,7 @@ class HomePresenter: HomePresentationLogic {
                 .summary(text: NSLocalizedString("summary_long_text", comment: "")),
                 .webViewPlot(title: NSLocalizedString("percentage_population_symptoms", comment: ""), url: Configuration.populationSymptomsPlotUrl),
                 .about(NSLocalizedString("about_us_text", comment: "")),
-                .followUs(institutions: [.facebook(nil), .instagram(nil), .twitter(nil)]),
+                .followUs(institutions: [.facebook, .instagram, .twitter]),
                 .contactUs
             ]
         )

@@ -58,6 +58,7 @@ class SocialCell: UITableViewCell, CellIdentifier {
         button.imageView?.contentMode = .scaleAspectFit
         button.translatesAutoresizingMaskIntoConstraints = false
         button.configureTargets()
+        button.addTarget(self, action: #selector(didTapInstagram), for: .touchUpInside)
         button.heightAnchor.constraint(equalToConstant: 38).isActive = true
 
         return button
@@ -69,6 +70,7 @@ class SocialCell: UITableViewCell, CellIdentifier {
         button.imageView?.contentMode = .scaleAspectFit
         button.translatesAutoresizingMaskIntoConstraints = false
         button.configureTargets()
+        button.addTarget(self, action: #selector(didTapFacebook), for: .touchUpInside)
         button.heightAnchor.constraint(equalToConstant: 38).isActive = true
 
         return button
@@ -80,6 +82,7 @@ class SocialCell: UITableViewCell, CellIdentifier {
         button.imageView?.contentMode = .scaleAspectFit
         button.translatesAutoresizingMaskIntoConstraints = false
         button.configureTargets()
+        button.addTarget(self, action: #selector(didTapTwitter), for: .touchUpInside)
         button.heightAnchor.constraint(equalToConstant: 38).isActive = true
 
         return button

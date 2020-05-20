@@ -8,16 +8,37 @@
 
 import UIKit
 
+protocol EndFormViewDelegate: AnyObject {
+    func dailyNotifications()
+    func weeklyNotifications()
+    func noNotifications()
+}
+
 struct EndFormViewVM: Equatable {}
 
-class EndFormView: UIView, CleanView {
+class EndFormView: UIStackView, CleanView {
     typealias VMType = EndFormViewVM
 
     static var emptySkeleton: EndFormViewVM = EndFormViewVM()
     var viewModel: EndFormViewVM = EndFormView.emptySkeleton
     var viewState: ViewState = .empty
 
+    weak var delegate: EndFormViewDelegate?
+
     // MARK: UI
+
+    private lazy var backgroundView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 20
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.3
+        view.layer.shadowOffset = CGSize.zero
+        view.layer.shadowRadius = 5
+        view.backgroundColor = Color.white
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        return view
+    }()
 
     private var thankYouLabel: UILabel = {
         let label = UILabel()
@@ -41,40 +62,20 @@ class EndFormView: UIView, CleanView {
         return label
     }()
 
-    private var bottomView: UIView = {
-        let view = UIView()
-        view.backgroundColor = Color.white
-        view.layer.shadowColor = UIColor.gray.cgColor
-        view.layer.shadowOpacity = 0.3
-        view.layer.shadowOffset = CGSize.zero
-        view.layer.shadowRadius = 5
-        view.translatesAutoresizingMaskIntoConstraints = false
-
-        return view
-    }()
-
-    private var bottomSafeView: UIView = {
-        let view = UIView()
-        view.backgroundColor = Color.white
-        view.translatesAutoresizingMaskIntoConstraints = false
-
-        return view
-    }()
-
-    private lazy var registerWeeklyNotificationsFormButton: LargeButton = {
+    private lazy var registerDailyNotificationsFormButton: LargeButton = {
         let button = LargeButton(style: .filled, showSpinnerWhenTapped: false)
-        button.setTitle(NSLocalizedString("weekly_reminder", comment: ""), for: .normal)
-        //        button.addTarget(self, action: #selector(startForm), for: .touchUpInside)
+        button.setTitle(NSLocalizedString("daily_reminder", comment: ""), for: .normal)
+        button.addTarget(self, action: #selector(dailyNotifications), for: .touchUpInside)
         button.heightAnchor.constraint(equalToConstant: Layout.buttonHeight).isActive = true
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
     }()
 
-    private lazy var registerMonthlyNotificationsFormButton: LargeButton = {
+    private lazy var registerWeeklyNotificationsFormButton: LargeButton = {
         let button = LargeButton(style: .simple)
-        button.setTitle(NSLocalizedString("monthly_reminder", comment: ""), for: .normal)
-        //        button.addTarget(self, action: #selector(startForm), for: .touchUpInside)
+        button.setTitle(NSLocalizedString("weekly_reminder", comment: ""), for: .normal)
+        button.addTarget(self, action: #selector(weeklyNotifications), for: .touchUpInside)
         button.heightAnchor.constraint(equalToConstant: Layout.buttonHeight).isActive = true
         button.translatesAutoresizingMaskIntoConstraints = false
 
@@ -84,7 +85,7 @@ class EndFormView: UIView, CleanView {
     private lazy var noThanksButton: LargeButton = {
         let button = LargeButton(style: .simple)
         button.setTitle(NSLocalizedString("no_hanks", comment: ""), for: .normal)
-        //        button.addTarget(self, action: #selector(startForm), for: .touchUpInside)
+        button.addTarget(self, action: #selector(noNotifications), for: .touchUpInside)
         button.heightAnchor.constraint(equalToConstant: Layout.buttonHeight).isActive = true
         button.translatesAutoresizingMaskIntoConstraints = false
 
@@ -100,59 +101,42 @@ class EndFormView: UIView, CleanView {
         setupConstraints()
     }
 
-    required init?(coder _: NSCoder) {
+    required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: Setup methods
 
     private func setupView() {
+        axis = .vertical
+        spacing = 5
+        alignment = .fill
+        distribution = .fill
+        translatesAutoresizingMaskIntoConstraints = false
+
         backgroundColor = Color.white
+
+        addSubview(backgroundView)
+
+        let separationView = UIView()
+        separationView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+
         [
-            bottomView,
-            bottomSafeView,
-            registerWeeklyNotificationsFormButton,
             thankYouLabel,
             thankYouTextLabel,
-            registerMonthlyNotificationsFormButton,
-            noThanksButton
-        ].forEach { addSubview($0) }
+            separationView,
+            noThanksButton,
+            registerWeeklyNotificationsFormButton,
+            registerDailyNotificationsFormButton
+        ].forEach { addArrangedSubview($0) }
     }
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            thankYouLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
-            thankYouLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-            thankYouLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-
-            thankYouTextLabel.topAnchor.constraint(equalTo: thankYouLabel.bottomAnchor, constant: 20),
-            thankYouTextLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-            thankYouTextLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-
-            bottomView.bottomAnchor.constraint(equalTo: bottomSafeView.topAnchor),
-            bottomView.leftAnchor.constraint(equalTo: leftAnchor),
-            bottomView.rightAnchor.constraint(equalTo: rightAnchor),
-            bottomView.topAnchor.constraint(equalTo: noThanksButton.topAnchor, constant: -2),
-
-            bottomSafeView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            bottomSafeView.leftAnchor.constraint(equalTo: leftAnchor),
-            bottomSafeView.rightAnchor.constraint(equalTo: rightAnchor),
-            bottomSafeView.topAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
-
-            registerWeeklyNotificationsFormButton.bottomAnchor.constraint(equalTo: bottomSafeView.topAnchor, constant: -10),
-            registerWeeklyNotificationsFormButton.leftAnchor.constraint(equalTo: layoutMarginsGuide.leftAnchor),
-            registerWeeklyNotificationsFormButton.rightAnchor.constraint(equalTo: layoutMarginsGuide.rightAnchor),
-            registerWeeklyNotificationsFormButton.heightAnchor.constraint(equalToConstant: Layout.buttonHeight),
-
-            registerMonthlyNotificationsFormButton.bottomAnchor.constraint(equalTo: registerWeeklyNotificationsFormButton.topAnchor, constant: -10),
-            registerMonthlyNotificationsFormButton.leftAnchor.constraint(equalTo: layoutMarginsGuide.leftAnchor),
-            registerMonthlyNotificationsFormButton.rightAnchor.constraint(equalTo: layoutMarginsGuide.rightAnchor),
-            registerMonthlyNotificationsFormButton.heightAnchor.constraint(equalToConstant: Layout.buttonHeight),
-
-            noThanksButton.bottomAnchor.constraint(equalTo: registerMonthlyNotificationsFormButton.topAnchor, constant: -10),
-            noThanksButton.leftAnchor.constraint(equalTo: layoutMarginsGuide.leftAnchor),
-            noThanksButton.rightAnchor.constraint(equalTo: layoutMarginsGuide.rightAnchor),
-            noThanksButton.heightAnchor.constraint(equalToConstant: Layout.buttonHeight)
+            backgroundView.topAnchor.constraint(equalTo: topAnchor, constant: -15),
+            backgroundView.leftAnchor.constraint(equalTo: leftAnchor, constant: -15),
+            backgroundView.rightAnchor.constraint(equalTo: rightAnchor, constant: 15),
+            backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 15)
         ])
     }
 
@@ -171,4 +155,18 @@ class EndFormView: UIView, CleanView {
     func prepareForError() {}
 
     func prepareForEmpty() {}
+
+    // MARK: Helpers
+
+    @objc private func dailyNotifications() {
+        delegate?.dailyNotifications()
+    }
+
+    @objc private func weeklyNotifications() {
+        delegate?.weeklyNotifications()
+    }
+
+    @objc private func noNotifications() {
+        delegate?.noNotifications()
+    }
 }

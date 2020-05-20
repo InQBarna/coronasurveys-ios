@@ -131,6 +131,7 @@ extension GenericWebViewViewController: WKNavigationDelegate {
             router?.routeToEndForm()
         } else if navigationAction.request.url?.absoluteString == Configuration.coronaSurveysUrl {
             decisionHandler(.cancel)
+            genericWebViewView.updateState(new: .loaded)
 
             if let url = URL(string: Configuration.coronaSurveysUrl) {
                 let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)

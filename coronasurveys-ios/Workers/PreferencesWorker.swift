@@ -14,4 +14,16 @@ class PreferencesWorker: PreferencesStoreProtocol {
     public init(store: PreferencesStoreProtocol) {
         self.store = store
     }
+
+    func scheduleNotification(for interval: NotificationInterval) {
+        store.scheduleNotification(for: interval)
+    }
+
+    func cancelNotification() {
+        store.cancelNotification()
+    }
+
+    func hasScheduledNotification(completion: @escaping (Bool) -> Void) {
+        store.hasScheduledNotification(completion: completion)
+    }
 }

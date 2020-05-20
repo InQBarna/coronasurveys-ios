@@ -14,6 +14,7 @@ import UIKit
 
 protocol SettingsDisplayLogic: AnyObject {
     func displayView(viewModel: Settings.PrepareView.ViewModel)
+    func displayToggleNotification(viewModel: Settings.ToggleNotification.ViewModel)
 }
 
 class SettingsViewController: UIViewController, SettingsDisplayLogic {
@@ -23,7 +24,9 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
     // MARK: View
 
     private lazy var settingsView: SettingsView = {
-        SettingsView()
+        let view = SettingsView()
+        view.delegate = self
+        return view
     }()
 
     // MARK: Object lifecycle
@@ -89,9 +92,25 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
         settingsView.display(viewModel: settingsViewVM)
     }
 
+    private func toggleNotification(newValue: Bool) {
+        let request = Settings.ToggleNotification.Request(newValue: newValue)
+        interactor?.toggleNotification(request: request)
+    }
+
+    func displayToggleNotification(viewModel: Settings.ToggleNotification.ViewModel) {
+        let settingsViewVM = SettingsViewVM(sections: viewModel.sections)
+        settingsView.display(viewModel: settingsViewVM)
+    }
+
     // MARK: Helpers
 
     @objc private func dismissViewController() {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension SettingsViewController: SettingsViewDelegate {
+    func didUpdateNotifications(_ uiSwitch: UISwitch) {
+        toggleNotification(newValue: uiSwitch.isOn)
     }
 }

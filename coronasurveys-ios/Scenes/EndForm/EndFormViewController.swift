@@ -14,11 +14,22 @@ import UIKit
 
 protocol EndFormDisplayLogic: AnyObject {
     func displayView(viewModel: EndForm.PrepareView.ViewModel)
+    func displayScheduleNotification(viewModel: EndForm.ScheduleNotification.ViewModel)
 }
 
-class EndFormViewController: UIViewController, EndFormDisplayLogic, AutoUpdateContext {
+class EndFormViewController: UIViewController, EndFormDisplayLogic, AutoUpdateContext, ModalViewController {
     var interactor: EndFormBusinessLogic?
     var router: (NSObjectProtocol & EndFormRoutingLogic & EndFormDataPassing)?
+
+    // MARK: ModalViewController
+
+    var containerViewGetter: UIView {
+        endFormView
+    }
+
+    var backgroundViewGetter: UIView {
+        dimBackgroundView
+    }
 
     // MARK: AutoUpdateContext
 
@@ -38,8 +49,29 @@ class EndFormViewController: UIViewController, EndFormDisplayLogic, AutoUpdateCo
 
     // MARK: UI
 
+    private lazy var dimBackgroundView: UIView = {
+        let view = UIView()
+        view.alpha = 0.5
+        view.backgroundColor = .black
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        return view
+    }()
+
     private lazy var endFormView: EndFormView = {
-        EndFormView()
+        let view = EndFormView()
+        view.delegate = self
+        return view
+    }()
+
+    // MARK: Gestures
+
+    private lazy var tapGesture: UITapGestureRecognizer = {
+        let tapGesture = UITapGestureRecognizer()
+        tapGesture.numberOfTapsRequired = 1
+        tapGesture.addTarget(self, action: #selector(dismissViewController))
+
+        return tapGesture
     }()
 
     // MARK: Object lifecycle
@@ -67,28 +99,41 @@ class EndFormViewController: UIViewController, EndFormDisplayLogic, AutoUpdateCo
         presenter.viewController = viewController
         router.viewController = viewController
         router.dataStore = interactor
+
+        modalPresentationStyle = .overFullScreen
+        transitioningDelegate = self
     }
 
     // MARK: View lifecycle
 
-    override func loadView() {
-        super.loadView()
-        view = endFormView
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationBar()
+
+        setupView()
+        setupConstraints()
+
         prepareView()
     }
 
     // MARK: Setup methods
 
-    func setupNavigationBar() {
-        navigationController?.navigationBar.tintColor = Color.black
+    private func setupView() {
+        view.backgroundColor = .clear
+        dimBackgroundView.addGestureRecognizer(tapGesture)
+        [dimBackgroundView, endFormView].forEach { view.addSubview($0) }
+    }
 
-        let leftBarButtonItem = UIBarButtonItem(image: Icon.xmark, style: .plain, target: self, action: #selector(dismissViewController))
-        navigationItem.leftBarButtonItem = leftBarButtonItem
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+            dimBackgroundView.topAnchor.constraint(equalTo: view.topAnchor),
+            dimBackgroundView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            dimBackgroundView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            dimBackgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+            endFormView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            endFormView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            endFormView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8)
+        ])
     }
 
     // MARK: Prepare view
@@ -102,9 +147,59 @@ class EndFormViewController: UIViewController, EndFormDisplayLogic, AutoUpdateCo
         // nameTextField.text = viewModel.name
     }
 
+    // MARK: Schedule notification
+
+    private func scheduleNotification(interval: NotificationInterval) {
+        let center = UNUserNotificationCenter.current()
+        center.requestAuthorization(options: [.alert]) { granted, error in
+            if granted, error == nil {
+                DispatchQueue.main.async {
+                    let request = EndForm.ScheduleNotification.Request(interval: interval)
+                    self.interactor?.scheduleNotification(request: request)
+                }
+            }
+        }
+    }
+
+    func displayScheduleNotification(viewModel: EndForm.ScheduleNotification.ViewModel) {
+        dismissViewController()
+    }
+
     // MARK: Helpers
 
     @objc private func dismissViewController() {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: UIViewControllerTransitioningDelegate
+
+extension EndFormViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        ModalDismissal<EndFormViewController>()
+    }
+
+    func animationController(
+        forPresented presented: UIViewController,
+        presenting: UIViewController,
+        source: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
+        ModalPresentation<EndFormViewController>()
+    }
+}
+
+// MARK: EndFormViewDelegate
+
+extension EndFormViewController: EndFormViewDelegate {
+    func dailyNotifications() {
+        scheduleNotification(interval: .daily)
+    }
+
+    func weeklyNotifications() {
+        scheduleNotification(interval: .weekly)
+    }
+
+    func noNotifications() {
+        dismissViewController()
     }
 }

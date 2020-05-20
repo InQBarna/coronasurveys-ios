@@ -123,17 +123,44 @@ class HomeViewController: UIViewController, HomeDisplayLogic, AutoUpdateContext 
 // MARK: HomeViewDelegate
 
 extension HomeViewController: HomeViewDelegate {
-    func didTapFacebook() {}
+    func didTapFacebook() {
+        if let url = URL(string: Configuration.facebookUrl) {
+            UIApplication.shared.open(url)
+        }
+    }
 
-    func didTapTwitter() {}
+    func didTapTwitter() {
+        if let url = URL(string: Configuration.twitterUrl) {
+            UIApplication.shared.open(url)
+        }
+    }
 
-    func didTapInstagram() {}
+    func didTapInstagram() {
+        if let url = URL(string: Configuration.instagramUrl) {
+            UIApplication.shared.open(url)
+        }
+    }
 
-    func didTapSeeTeamButton() {}
+    func didTapSeeTeamButton() {
+        if let url = URL(string: Configuration.teamUrl) {
+            UIApplication.shared.open(url)
+        }
+    }
 
-    func didTapSeeDataButton() {}
+    func didTapSeeDataButton() {
+        if let url = URL(string: Configuration.dataUrl) {
+            UIApplication.shared.open(url)
+        }
+    }
 
-    func didTapSendEmail() {}
+    func didTapSendEmail(_ sender: UIButton) {
+        let apps = MailApps.allAvailable(recipient: Configuration.email, subject: NSLocalizedString("send_mail_subject", comment: ""), body: nil)
+        let mailLinker = MailLinker(availableApps: apps, sender: sender)
+
+        DispatchQueue.main.async {
+            self.present(mailLinker, animated: true, completion: nil)
+        }
+    }
 
     func didSelectConutry(code: String) {
         updateCountryCode(with: code)

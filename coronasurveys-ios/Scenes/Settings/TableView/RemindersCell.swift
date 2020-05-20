@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol RemindersCellDelegate: AnyObject {
+    func didUpdateNotifications(_ uiSwitch: UISwitch)
+}
+
 class RemindersCell: UITableViewCell, CellIdentifier {
+    weak var delegate: RemindersCellDelegate?
+
     // MARK: UI
 
     private lazy var titleLabel: UILabel = {
@@ -24,6 +30,7 @@ class RemindersCell: UITableViewCell, CellIdentifier {
     private lazy var switcher: UISwitch = {
         let switcher = UISwitch()
         switcher.onTintColor = Color.violetBlue
+        switcher.addTarget(self, action: #selector(didUpdateNotifications), for: .valueChanged)
         switcher.translatesAutoresizingMaskIntoConstraints = false
 
         return switcher
@@ -44,7 +51,9 @@ class RemindersCell: UITableViewCell, CellIdentifier {
 
     // MARK: Setup methods
 
-    public func setup(isActive: Bool) {}
+    public func setup(isActive: Bool) {
+        switcher.isOn = isActive
+    }
 
     private func setupView() {
         selectionStyle = .none
@@ -61,5 +70,11 @@ class RemindersCell: UITableViewCell, CellIdentifier {
             switcher.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
             switcher.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
+    }
+
+    // MARK: Helpers
+
+    @objc private func didUpdateNotifications(_ uiSwitch: UISwitch) {
+        delegate?.didUpdateNotifications(uiSwitch)
     }
 }

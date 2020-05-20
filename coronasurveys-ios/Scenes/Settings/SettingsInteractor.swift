@@ -14,6 +14,7 @@ import UIKit
 
 protocol SettingsBusinessLogic {
     func prepareView(request: Settings.PrepareView.Request)
+    func toggleNotification(request: Settings.ToggleNotification.Request)
 }
 
 protocol SettingsDataStore: DependencyInjectable {
@@ -27,10 +28,29 @@ class SettingsInteractor: SettingsBusinessLogic, SettingsDataStore {
 
     var context: [Dependency: Any?]?
 
+    // MARK: Workers
+
+    let workers = PreferencesWorker(store: PreferencesStore())
+
     // MARK: Business logic
 
     func prepareView(request: Settings.PrepareView.Request) {
-        let response = Settings.PrepareView.Response()
-        presenter?.presentView(response: response)
+        workers.hasScheduledNotification { [weak self] hasScheduledNotification in
+            let response = Settings.PrepareView.Response(hasScheduledNotification: hasScheduledNotification)
+            self?.presenter?.presentView(response: response)
+        }
+    }
+
+    func toggleNotification(request: Settings.ToggleNotification.Request) {
+        if request.newValue == true {
+            workers.scheduleNotification(for: .daily)
+        } else {
+            workers.cancelNotification()
+        }
+
+        workers.hasScheduledNotification { [weak self] hasScheduledNotification in
+            let response = Settings.ToggleNotification.Response(hasScheduledNotification: hasScheduledNotification)
+            self?.presenter?.presentToggleNotification(response: response)
+        }
     }
 }

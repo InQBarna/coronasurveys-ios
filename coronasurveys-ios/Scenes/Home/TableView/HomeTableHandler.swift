@@ -11,7 +11,7 @@ import UIKit
 protocol HomeTableHandlerDelegate: AnyObject {
     func didTapSeeTeamButton()
     func didTapSeeDataButton()
-    func didTapSendEmail()
+    func didTapSendEmail(_ sender: UIButton)
     func didTapFacebook()
     func didTapTwitter()
     func didTapInstagram()
@@ -84,8 +84,6 @@ class HomeTableHandler: NSObject, UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeue(cell: EmailCell.self, at: indexPath)
             cell.delegate = self
             return cell
-        case .supportedBy:
-            return UITableViewCell()
         }
     }
 
@@ -111,8 +109,8 @@ extension HomeTableHandler: SummaryCellDelegate {
 // MARK: EmailCellDelegate
 
 extension HomeTableHandler: EmailCellDelegate {
-    func didTapSendEmail() {
-        delegate?.didTapSendEmail()
+    func didTapSendEmail(_ sender: UIButton) {
+        delegate?.didTapSendEmail(sender)
     }
 }
 

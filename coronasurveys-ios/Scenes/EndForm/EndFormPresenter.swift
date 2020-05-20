@@ -14,6 +14,7 @@ import UIKit
 
 protocol EndFormPresentationLogic {
     func presentView(response: EndForm.PrepareView.Response)
+    func presentScheduleNotification(response: EndForm.ScheduleNotification.Response)
 }
 
 class EndFormPresenter: EndFormPresentationLogic {
@@ -22,5 +23,10 @@ class EndFormPresenter: EndFormPresentationLogic {
     func presentView(response: EndForm.PrepareView.Response) {
         let viewModel = EndForm.PrepareView.ViewModel()
         viewController?.displayView(viewModel: viewModel)
+    }
+
+    func presentScheduleNotification(response: EndForm.ScheduleNotification.Response) {
+        let viewModel = EndForm.ScheduleNotification.ViewModel()
+        viewController?.displayScheduleNotification(viewModel: viewModel)
     }
 }

@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SettingsViewDelegate: AnyObject {
+    func didUpdateNotifications(_ uiSwitch: UISwitch)
+}
+
 struct SettingsViewVM: Equatable {
     let sections: [SettingsContent]
 }
@@ -20,6 +24,7 @@ class SettingsView: UIView, CleanView {
     var viewState: ViewState = .empty
 
     var handler: SettingsTableHandler?
+    weak var delegate: SettingsViewDelegate?
 
     // MARK: UI
 
@@ -66,6 +71,7 @@ class SettingsView: UIView, CleanView {
 
         if handler == nil {
             handler = SettingsTableHandler(sections: viewModel.sections, tableView: tableView)
+            handler?.delegate = self
         } else {
             handler?.update(sections: viewModel.sections)
         }
@@ -80,4 +86,12 @@ class SettingsView: UIView, CleanView {
     func prepareForError() {}
 
     func prepareForEmpty() {}
+}
+
+// MARK: SettingsTableHandlerDelegate
+
+extension SettingsView: SettingsTableHandlerDelegate {
+    func didUpdateNotifications(_ uiSwitch: UISwitch) {
+        delegate?.didUpdateNotifications(uiSwitch)
+    }
 }

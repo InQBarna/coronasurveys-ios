@@ -14,6 +14,7 @@ import UIKit
 
 protocol SettingsPresentationLogic {
     func presentView(response: Settings.PrepareView.Response)
+    func presentToggleNotification(response: Settings.ToggleNotification.Response)
 }
 
 class SettingsPresenter: SettingsPresentationLogic {
@@ -24,8 +25,13 @@ class SettingsPresenter: SettingsPresentationLogic {
     func presentView(response: Settings.PrepareView.Response) {
         let viewModel = Settings.PrepareView.ViewModel(
             title: NSLocalizedString("settings", comment: ""),
-            sections: [.reminders(active: true)]
+            sections: [.reminders(active: response.hasScheduledNotification)]
         )
         viewController?.displayView(viewModel: viewModel)
+    }
+
+    func presentToggleNotification(response: Settings.ToggleNotification.Response) {
+        let viewModel = Settings.ToggleNotification.ViewModel(sections: [.reminders(active: response.hasScheduledNotification)])
+        viewController?.displayToggleNotification(viewModel: viewModel)
     }
 }

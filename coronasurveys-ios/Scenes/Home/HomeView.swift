@@ -14,7 +14,7 @@ protocol HomeViewDelegate: AnyObject {
     func didSelectConutry(code: String)
     func didTapSeeTeamButton()
     func didTapSeeDataButton()
-    func didTapSendEmail()
+    func didTapSendEmail(_ sender: UIButton)
     func didTapFacebook()
     func didTapTwitter()
     func didTapInstagram()
@@ -174,6 +174,7 @@ class HomeView: UIView, CleanView {
 
         if handler == nil {
             handler = HomeTableHandler(sections: viewModel.sections, tableView: tableView)
+            handler?.delegate = self
         } else {
             handler?.update(sections: viewModel.sections)
         }
@@ -231,7 +232,7 @@ extension HomeView: HomeTableHandlerDelegate {
         delegate?.didTapSeeDataButton()
     }
 
-    func didTapSendEmail() {
-        delegate?.didTapSendEmail()
+    func didTapSendEmail(_ sender: UIButton) {
+        delegate?.didTapSendEmail(sender)
     }
 }

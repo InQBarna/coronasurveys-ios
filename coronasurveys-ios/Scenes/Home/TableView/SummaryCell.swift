@@ -40,22 +40,24 @@ class SummaryCell: UITableViewCell, CellIdentifier {
     }()
 
     private lazy var teamButton: LargeButton = {
-        let button = LargeButton(style: .simple, showSpinnerWhenTapped: false)
+        let button = LargeButton(style: .bordered, showSpinnerWhenTapped: false)
         button.setTitle(NSLocalizedString("team", comment: ""), for: .normal)
         button.addTarget(self, action: #selector(seeTeamButton), for: .touchUpInside)
         button.heightAnchor.constraint(equalToConstant: Layout.buttonHeight).isActive = true
         button.setTitleColor(Color.smaltBlue, for: .normal)
+        button.layer.borderColor = Color.smaltBlue?.cgColor
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
     }()
 
     private lazy var seeOpenSourceDataButton: LargeButton = {
-        let button = LargeButton(style: .simple, showSpinnerWhenTapped: false)
+        let button = LargeButton(style: .bordered, showSpinnerWhenTapped: false)
         button.setTitle(NSLocalizedString("see_open_source_data", comment: ""), for: .normal)
         button.addTarget(self, action: #selector(seeDataButton), for: .touchUpInside)
         button.heightAnchor.constraint(equalToConstant: Layout.buttonHeight).isActive = true
         button.setTitleColor(Color.smaltBlue, for: .normal)
+        button.layer.borderColor = Color.smaltBlue?.cgColor
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
@@ -82,7 +84,7 @@ class SummaryCell: UITableViewCell, CellIdentifier {
     }
 
     private func setupView() {
-        [titleLabel, valueLabel].forEach { addSubview($0) }
+        [titleLabel, valueLabel, teamButton, seeOpenSourceDataButton].forEach { addSubview($0) }
     }
 
     private func setupConstraints() {
@@ -94,7 +96,17 @@ class SummaryCell: UITableViewCell, CellIdentifier {
             valueLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
             valueLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
             valueLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-            valueLabel.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)
+
+            teamButton.topAnchor.constraint(equalTo: valueLabel.bottomAnchor, constant: 10),
+            teamButton.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            teamButton.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            teamButton.heightAnchor.constraint(equalToConstant: Layout.buttonHeight),
+
+            seeOpenSourceDataButton.topAnchor.constraint(equalTo: teamButton.bottomAnchor, constant: 10),
+            seeOpenSourceDataButton.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            seeOpenSourceDataButton.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            seeOpenSourceDataButton.heightAnchor.constraint(equalToConstant: Layout.buttonHeight),
+            seeOpenSourceDataButton.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)
         ])
     }
 

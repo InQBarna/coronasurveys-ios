@@ -22,4 +22,14 @@ enum EndForm {
 
         struct ViewModel {}
     }
+
+    enum ScheduleNotification {
+        struct Request {
+            let interval: NotificationInterval
+        }
+
+        struct Response {}
+
+        struct ViewModel {}
+    }
 }

@@ -14,6 +14,7 @@ import UIKit
 
 protocol EndFormBusinessLogic {
     func prepareView(request: EndForm.PrepareView.Request)
+    func scheduleNotification(request: EndForm.ScheduleNotification.Request)
 }
 
 protocol EndFormDataStore: DependencyInjectable {
@@ -27,10 +28,20 @@ class EndFormInteractor: EndFormBusinessLogic, EndFormDataStore {
 
     var context: [Dependency: Any?]?
 
-    // MARK: PrepareView
+    // MARK: Workers
+
+    let workers = PreferencesWorker(store: PreferencesStore())
+
+    // MARK: Busniess logic
 
     func prepareView(request: EndForm.PrepareView.Request) {
         let response = EndForm.PrepareView.Response()
         presenter?.presentView(response: response)
+    }
+
+    func scheduleNotification(request: EndForm.ScheduleNotification.Request) {
+        workers.scheduleNotification(for: request.interval)
+        let response = EndForm.ScheduleNotification.Response()
+        presenter?.presentScheduleNotification(response: response)
     }
 }

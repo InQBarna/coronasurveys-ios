@@ -4,6 +4,9 @@ platform :ios, '10.0'
 target 'coronasurveys-ios' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
+  
+  # ignore all warnings from all pods
+  inhibit_all_warnings!
 
   # Pods for coronasurveys-ios
   pod 'SwiftLint'

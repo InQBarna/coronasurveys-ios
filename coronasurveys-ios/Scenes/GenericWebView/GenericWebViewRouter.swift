@@ -36,8 +36,8 @@ class GenericWebViewRouter: NSObject, GenericWebViewRoutingLogic, GenericWebView
     // MARK: Navigation
 
     func navigateToEndForm(source: GenericWebViewViewController, destination: EndFormViewController) {
-        let navigationController = UINavigationController(rootViewController: destination)
-        source.present(navigationController, animated: true, completion: nil)
+        destination.modalPresentationStyle = .overFullScreen
+        source.present(destination, animated: true, completion: nil)
     }
 
     // MARK: Passing data

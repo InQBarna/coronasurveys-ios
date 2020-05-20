@@ -9,7 +9,7 @@
 import UIKit
 
 protocol EmailCellDelegate: AnyObject {
-    func didTapSendEmail()
+    func didTapSendEmail(_ sender: UIButton)
 }
 
 class EmailCell: UITableViewCell, CellIdentifier {
@@ -20,7 +20,7 @@ class EmailCell: UITableViewCell, CellIdentifier {
     private lazy var emailButton: LargeButton = {
         let button = LargeButton(style: .bordered, showSpinnerWhenTapped: false)
         button.setTitle(NSLocalizedString("email_us", comment: ""), for: .normal)
-        button.addTarget(self, action: #selector(sendEmailTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapSendEmail), for: .touchUpInside)
         button.heightAnchor.constraint(equalToConstant: Layout.buttonHeight).isActive = true
         button.setTitleColor(Color.smaltBlue, for: .normal)
         button.layer.borderColor = Color.smaltBlue?.cgColor
@@ -60,7 +60,7 @@ class EmailCell: UITableViewCell, CellIdentifier {
 
     // MARK: Helpers
 
-    @objc private func sendEmailTapped() {
-        delegate?.didTapSendEmail()
+    @objc private func didTapSendEmail(_ sender: UIButton) {
+        delegate?.didTapSendEmail(sender)
     }
 }

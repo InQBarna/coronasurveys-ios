@@ -72,6 +72,11 @@
 		FFD9561A24752DA800BA33B4 /* SettingsContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9561924752DA800BA33B4 /* SettingsContent.swift */; };
 		FFD9561C24753E2300BA33B4 /* EmailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9561B24753E2300BA33B4 /* EmailCell.swift */; };
 		FFD9561E24754AC800BA33B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFD9561D24754AC800BA33B4 /* GoogleService-Info.plist */; };
+		FFD956202475646D00BA33B4 /* SocialNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9561F2475646D00BA33B4 /* SocialNetwork.swift */; };
+		FFD956252475664E00BA33B4 /* ModalPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD956232475664E00BA33B4 /* ModalPresentation.swift */; };
+		FFD956262475664E00BA33B4 /* ModalDismissal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD956242475664E00BA33B4 /* ModalDismissal.swift */; };
+		FFD9562824756AC200BA33B4 /* NotificationInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9562724756AC200BA33B4 /* NotificationInterval.swift */; };
+		FFD9562A2475760A00BA33B4 /* MailHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD956292475760A00BA33B4 /* MailHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -145,6 +150,11 @@
 		FFD9561924752DA800BA33B4 /* SettingsContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsContent.swift; sourceTree = "<group>"; };
 		FFD9561B24753E2300BA33B4 /* EmailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCell.swift; sourceTree = "<group>"; };
 		FFD9561D24754AC800BA33B4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FFD9561F2475646D00BA33B4 /* SocialNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetwork.swift; sourceTree = "<group>"; };
+		FFD956232475664E00BA33B4 /* ModalPresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalPresentation.swift; sourceTree = "<group>"; };
+		FFD956242475664E00BA33B4 /* ModalDismissal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalDismissal.swift; sourceTree = "<group>"; };
+		FFD9562724756AC200BA33B4 /* NotificationInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationInterval.swift; sourceTree = "<group>"; };
+		FFD956292475760A00BA33B4 /* MailHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +211,7 @@
 				FF103A1B2472917700909F0F /* AppDelegate.swift */,
 				FF103A512472B17400909F0F /* Router.swift */,
 				FFD9561024751F5300BA33B4 /* Configuration.swift */,
+				FFD956212475658A00BA33B4 /* Transitions */,
 				FFD955FA2474002E00BA33B4 /* Enum */,
 				FFA47D642472DD0E00A92D19 /* Views */,
 				FFA47D5D2472DB3700A92D19 /* Stores */,
@@ -295,6 +306,7 @@
 				FF103A632472B3BD00909F0F /* Dependency.swift */,
 				FFA47D692472DD6400A92D19 /* Animate.swift */,
 				FFD956022474031600BA33B4 /* CellIdentifier.swift */,
+				FFD956292475760A00BA33B4 /* MailHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -369,6 +381,8 @@
 			children = (
 				FFD955FB2474003E00BA33B4 /* HomeContent.swift */,
 				FFD9561924752DA800BA33B4 /* SettingsContent.swift */,
+				FFD9561F2475646D00BA33B4 /* SocialNetwork.swift */,
+				FFD9562724756AC200BA33B4 /* NotificationInterval.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -393,6 +407,23 @@
 				FFD9561724752D5600BA33B4 /* RemindersCell.swift */,
 			);
 			path = TableView;
+			sourceTree = "<group>";
+		};
+		FFD956212475658A00BA33B4 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				FFD956222475664E00BA33B4 /* Modal */,
+			);
+			path = Transitions;
+			sourceTree = "<group>";
+		};
+		FFD956222475664E00BA33B4 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				FFD956232475664E00BA33B4 /* ModalPresentation.swift */,
+				FFD956242475664E00BA33B4 /* ModalDismissal.swift */,
+			);
+			path = Modal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -571,9 +602,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF103A7D2472D39100909F0F /* GenericWebViewModels.swift in Sources */,
+				FFD956202475646D00BA33B4 /* SocialNetwork.swift in Sources */,
 				FF103A4524729BAC00909F0F /* HomeView.swift in Sources */,
+				FFD9562824756AC200BA33B4 /* NotificationInterval.swift in Sources */,
 				FFA47D582472DB2600A92D19 /* EndFormRouter.swift in Sources */,
 				FFA47D562472DB2600A92D19 /* EndFormPresenter.swift in Sources */,
+				FFD956262475664E00BA33B4 /* ModalDismissal.swift in Sources */,
 				FFA47D682472DD4F00A92D19 /* UIControl+.swift in Sources */,
 				FF103A5F2472B18F00909F0F /* SplashScreenInteractor.swift in Sources */,
 				FFD9560B2474186F00BA33B4 /* SocialCell.swift in Sources */,
@@ -585,6 +619,7 @@
 				FFA47D5A2472DB2600A92D19 /* EndFormViewController.swift in Sources */,
 				FF103A3924729A2900909F0F /* HomePresenter.swift in Sources */,
 				FFA47D662472DD2300A92D19 /* LargeButton.swift in Sources */,
+				FFD9562A2475760A00BA33B4 /* MailHelper.swift in Sources */,
 				FF103A6E2472D20200909F0F /* SettingsPresenter.swift in Sources */,
 				FF103A712472D20200909F0F /* SettingsModels.swift in Sources */,
 				FF103A7F2472D39100909F0F /* GenericWebViewViewController.swift in Sources */,
@@ -600,6 +635,7 @@
 				FFA47D592472DB2600A92D19 /* EndFormModels.swift in Sources */,
 				FFD9561824752D5600BA33B4 /* RemindersCell.swift in Sources */,
 				FF103A1C2472917700909F0F /* AppDelegate.swift in Sources */,
+				FFD956252475664E00BA33B4 /* ModalPresentation.swift in Sources */,
 				FF103A642472B3BD00909F0F /* Dependency.swift in Sources */,
 				FF103A5E2472B18F00909F0F /* SplashScreenViewController.swift in Sources */,
 				FFD9561124751F5300BA33B4 /* Configuration.swift in Sources */,

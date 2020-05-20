@@ -8,7 +8,9 @@
 
 import UIKit
 
-protocol SettingsTableHandlerDelegate: AnyObject {}
+protocol SettingsTableHandlerDelegate: AnyObject {
+    func didUpdateNotifications(_ uiSwitch: UISwitch)
+}
 
 class SettingsTableHandler: NSObject, UITableViewDelegate, UITableViewDataSource {
     private var sections: [SettingsContent] = []
@@ -54,7 +56,16 @@ class SettingsTableHandler: NSObject, UITableViewDelegate, UITableViewDataSource
         case let .reminders(active):
             let cell = tableView.dequeue(cell: RemindersCell.self, at: indexPath)
             cell.setup(isActive: active)
+            cell.delegate = self
             return cell
         }
+    }
+}
+
+// MARK: RemindersCellDelegate
+
+extension SettingsTableHandler: RemindersCellDelegate {
+    func didUpdateNotifications(_ uiSwitch: UISwitch) {
+        delegate?.didUpdateNotifications(uiSwitch)
     }
 }

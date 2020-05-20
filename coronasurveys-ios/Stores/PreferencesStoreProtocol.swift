@@ -8,4 +8,8 @@
 
 import Foundation
 
-protocol PreferencesStoreProtocol {}
+protocol PreferencesStoreProtocol {
+    func scheduleNotification(for interval: NotificationInterval)
+    func cancelNotification()
+    func hasScheduledNotification(completion: @escaping (Bool) -> Void)
+}
