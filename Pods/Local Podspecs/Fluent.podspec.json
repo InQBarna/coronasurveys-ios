@@ -1,0 +1,24 @@
+{
+  "name": "Fluent",
+  "version": "0.1.0",
+  "summary": "A tool to enforce Localization.",
+  "homepage": "http://gitlab.inqbarna.com/romaxin/fluent-ios",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "David Romacho": "david.romacho@inqbarna.com"
+  },
+  "source": {
+    "http": "http://gitlab.inqbarna.com/romaxin/fluent-ios/uploads/562e910c1472f8f2de27f3c5113b8e14/portable_fluent.zip"
+  },
+  "preserve_paths": "*",
+  "exclude_files": "**/file.zip",
+  "platforms": {
+    "osx": null,
+    "ios": null,
+    "tvos": null,
+    "watchos": null
+  }
+}

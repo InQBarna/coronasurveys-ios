@@ -84,7 +84,7 @@ class EndFormView: UIStackView, CleanView {
 
     private lazy var noThanksButton: LargeButton = {
         let button = LargeButton(style: .simple)
-        button.setTitle(NSLocalizedString("no_hanks", comment: ""), for: .normal)
+        button.setTitle(NSLocalizedString("no_thanks", comment: ""), for: .normal)
         button.addTarget(self, action: #selector(noNotifications), for: .touchUpInside)
         button.heightAnchor.constraint(equalToConstant: Layout.buttonHeight).isActive = true
         button.translatesAutoresizingMaskIntoConstraints = false
