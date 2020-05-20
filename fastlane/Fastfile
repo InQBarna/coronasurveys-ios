@@ -14,8 +14,6 @@
 # update_fastlane
 
 import_from_git(url: 'http://gitlab.inqbarna.com/contrib/xcode-scripts.git', path: 'fastlane/CommonFastfile')
-import_from_git(url: 'http://gitlab.inqbarna.com/contrib/xcode-scripts.git', path: 'fastlane/CommonFastfile')
-import_from_git(url: 'http://gitlab.inqbarna.com/contrib/xcode-scripts.git', path: 'fastlane/CommonFastfile')
 default_platform(:ios)
 
 platform :ios do

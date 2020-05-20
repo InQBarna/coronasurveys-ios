@@ -5,6 +5,6 @@ git_branch "8X3V795LG6"
 
 type("development")
 team_id "8X3V795LG6"
-app_identifier ["com.inqbarna.coronasurveys-ios"]
+app_identifier ["org.coronasurveys.mobile"]
 username "iosdevelopers@inqbarna.com"
 

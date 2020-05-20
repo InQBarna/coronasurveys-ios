@@ -1,4 +1,4 @@
-app_identifier("com.inqbarna.coronasurveys-ios") # The bundle identifier of your app
+app_identifier("org.coronasurveys.mobile") # The bundle identifier of your app
 apple_id("iosdevelopers@inqbarna.com") # Your Apple email address
 team_id("8X3V795LG6")
 

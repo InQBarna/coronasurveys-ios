@@ -752,7 +752,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.inqbarna.coronasurveys-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = org.coronasurveys.mobile;
 				PRODUCT_NAME = "Corona Surveys";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.inqbarna.coronasurveys-ios";
 				SWIFT_VERSION = 5.0;
@@ -888,7 +888,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.inqbarna.coronasurveys-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = org.coronasurveys.mobile;
 				PRODUCT_NAME = "Corona Surveys";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.inqbarna.coronasurveys-ios";
 				SWIFT_VERSION = 5.0;
@@ -910,7 +910,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.inqbarna.coronasurveys-ios";
+				PRODUCT_BUNDLE_IDENTIFIER = org.coronasurveys.mobile;
 				PRODUCT_NAME = "Corona Surveys";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.inqbarna.coronasurveys-ios";
 				SWIFT_VERSION = 5.0;
