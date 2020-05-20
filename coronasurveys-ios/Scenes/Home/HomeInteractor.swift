@@ -32,7 +32,7 @@ class HomeInteractor: HomeBusinessLogic, HomeDataStore {
     // MARK: Business logic
 
     func prepareView(request: Home.PrepareView.Request) {
-        let response = Home.PrepareView.Response(countryCode: countryCode?.capitalized)
+        let response = Home.PrepareView.Response(countryCode: countryCode?.uppercased())
         presenter?.presentView(response: response)
     }
 
