@@ -743,7 +743,7 @@
 			baseConfigurationReference = CF09CFC5F00E934DFBB5106B /* Pods-coronasurveys-ios.appstore.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8X3V795LG6;
 				INFOPLIST_FILE = "coronasurveys-ios/Info.plist";
@@ -754,7 +754,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.coronasurveys.mobile;
 				PRODUCT_NAME = "Corona Surveys";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.inqbarna.coronasurveys-ios";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore org.coronasurveys.mobile";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -890,7 +890,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.coronasurveys.mobile;
 				PRODUCT_NAME = "Corona Surveys";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.inqbarna.coronasurveys-ios";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development org.coronasurveys.mobile";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -901,7 +901,7 @@
 			baseConfigurationReference = 5A21360A920E10886BD8E95F /* Pods-coronasurveys-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8X3V795LG6;
 				INFOPLIST_FILE = "coronasurveys-ios/Info.plist";
@@ -912,7 +912,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.coronasurveys.mobile;
 				PRODUCT_NAME = "Corona Surveys";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.inqbarna.coronasurveys-ios";
+				PROVISIONING_PROFILE_SPECIFIER = "match AdHoc org.coronasurveys.mobile";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
