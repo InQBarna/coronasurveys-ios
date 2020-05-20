@@ -78,7 +78,17 @@ class EndFormViewController: UIViewController, EndFormDisplayLogic, AutoUpdateCo
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationBar()
         prepareView()
+    }
+
+    // MARK: Setup methods
+
+    func setupNavigationBar() {
+        navigationController?.navigationBar.tintColor = Color.black
+
+        let leftBarButtonItem = UIBarButtonItem(image: Icon.xmark, style: .plain, target: self, action: #selector(dismissViewController))
+        navigationItem.leftBarButtonItem = leftBarButtonItem
     }
 
     // MARK: Prepare view
@@ -90,5 +100,11 @@ class EndFormViewController: UIViewController, EndFormDisplayLogic, AutoUpdateCo
 
     func displayView(viewModel: EndForm.PrepareView.ViewModel) {
         // nameTextField.text = viewModel.name
+    }
+
+    // MARK: Helpers
+
+    @objc private func dismissViewController() {
+        dismiss(animated: true, completion: nil)
     }
 }

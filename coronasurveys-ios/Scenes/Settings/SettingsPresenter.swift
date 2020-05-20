@@ -22,7 +22,10 @@ class SettingsPresenter: SettingsPresentationLogic {
     // MARK: Do something
 
     func presentView(response: Settings.PrepareView.Response) {
-        let viewModel = Settings.PrepareView.ViewModel()
+        let viewModel = Settings.PrepareView.ViewModel(
+            title: NSLocalizedString("settings", comment: ""),
+            sections: [.reminders(active: true)]
+        )
         viewController?.displayView(viewModel: viewModel)
     }
 }

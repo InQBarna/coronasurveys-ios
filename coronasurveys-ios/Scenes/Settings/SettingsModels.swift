@@ -20,6 +20,9 @@ enum Settings {
 
         struct Response {}
 
-        struct ViewModel {}
+        struct ViewModel {
+            let title: String
+            let sections: [SettingsContent]
+        }
     }
 }

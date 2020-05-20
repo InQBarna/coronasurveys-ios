@@ -18,6 +18,22 @@ enum Home {
     enum PrepareView {
         struct Request {}
 
+        struct Response {
+            let countryCode: String?
+        }
+
+        struct ViewModel {
+            let title: String
+            let countryCode: String?
+            let sections: [HomeContent]
+        }
+    }
+
+    enum UpdateCountryCode {
+        struct Request {
+            let newCountryCode: String?
+        }
+
         struct Response {}
 
         struct ViewModel {}

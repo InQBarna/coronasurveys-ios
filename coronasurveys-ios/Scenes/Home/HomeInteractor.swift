@@ -14,10 +14,11 @@ import UIKit
 
 protocol HomeBusinessLogic {
     func prepareView(request: Home.PrepareView.Request)
+    func updateCountryCode(request: Home.UpdateCountryCode.Request)
 }
 
 protocol HomeDataStore: DependencyInjectable {
-    // var name: String { get set }
+    var countryCode: String? { get set }
 }
 
 class HomeInteractor: HomeBusinessLogic, HomeDataStore {
@@ -26,11 +27,16 @@ class HomeInteractor: HomeBusinessLogic, HomeDataStore {
     // MARK: Data store
 
     var context: [Dependency: Any?]?
+    var countryCode: String? = NSLocale.current.regionCode
 
     // MARK: Business logic
 
     func prepareView(request: Home.PrepareView.Request) {
-        let response = Home.PrepareView.Response()
+        let response = Home.PrepareView.Response(countryCode: countryCode?.capitalized)
         presenter?.presentView(response: response)
+    }
+
+    func updateCountryCode(request: Home.UpdateCountryCode.Request) {
+        countryCode = request.newCountryCode
     }
 }

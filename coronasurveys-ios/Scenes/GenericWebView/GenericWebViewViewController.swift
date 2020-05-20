@@ -10,14 +10,9 @@
 //  see http://clean-swift.com
 //
 
+import SafariServices
 import UIKit
 import WebKit
-
-protocol GenericWebViewDelegate: AnyObject {
-    func success(_ viewController: UIViewController)
-    func cancelled(_ viewController: UIViewController)
-}
-
 protocol GenericWebViewDisplayLogic: AnyObject {
     func displayWebView(viewModel: GenericWebView.PrepareWebView.ViewModel)
 }
@@ -25,8 +20,6 @@ protocol GenericWebViewDisplayLogic: AnyObject {
 class GenericWebViewViewController: UIViewController, GenericWebViewDisplayLogic, AutoUpdateContext {
     var interactor: GenericWebViewBusinessLogic?
     var router: (NSObjectProtocol & GenericWebViewRoutingLogic & GenericWebViewDataPassing)?
-
-    weak var delegate: GenericWebViewDelegate?
 
     // MARK: AutoUpdateContext
 
@@ -94,11 +87,17 @@ class GenericWebViewViewController: UIViewController, GenericWebViewDisplayLogic
 
     // MARK: Setup methods
 
-    func setupNavigationBar() {}
+    func setupNavigationBar() {
+        navigationController?.navigationBar.tintColor = Color.black
+
+        let leftBarButtonItem = UIBarButtonItem(image: Icon.xmark, style: .plain, target: self, action: #selector(dismissViewController))
+        navigationItem.leftBarButtonItem = leftBarButtonItem
+    }
 
     // MARK: Prepare view
 
     @objc func prepareWebView(objcUrl: String? = nil, shouldReloadProducts: Bool = false) {
+        genericWebViewView.updateState(new: .loading)
         let request = GenericWebView.PrepareWebView.Request(shouldReloadProducts: shouldReloadProducts)
         interactor?.prepareWebView(request: request)
     }
@@ -110,23 +109,36 @@ class GenericWebViewViewController: UIViewController, GenericWebViewDisplayLogic
 
     // MARK: Helpers
 
-    @objc private func cancelled() {
-        if let delegate = delegate {
-            delegate.cancelled(self)
-        } else {
-            dismiss(animated: true, completion: nil)
-        }
+    @objc private func dismissViewController() {
+        dismiss(animated: true, completion: nil)
     }
 }
 
 extension GenericWebViewViewController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        genericWebViewView.updateState(new: .loading)
+    }
+
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        // Handle finish navigation if needed
+        genericWebViewView.updateState(new: .loaded)
     }
 
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        print(navigationAction.request)
-        decisionHandler(.allow)
+        print("🌏 URL: \(navigationAction.request.url?.absoluteString ?? "no-url")")
+
+        if navigationAction.request.url?.pathExtension == "ics" {
+            decisionHandler(.allow)
+            router?.routeToEndForm()
+        } else if navigationAction.request.url?.absoluteString == Configuration.coronaSurveysUrl {
+            decisionHandler(.cancel)
+
+            if let url = URL(string: Configuration.coronaSurveysUrl) {
+                let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
+                present(vc, animated: true)
+            }
+        } else {
+            decisionHandler(.allow)
+        }
     }
 
     // MARK: Helpers

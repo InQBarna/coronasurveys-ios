@@ -53,6 +53,22 @@ class GenericWebViewView: UIView, CleanView {
         return webView
     }()
 
+    private lazy var activityIndicatorView: UIActivityIndicatorView = {
+        let activityIndicator: UIActivityIndicatorView
+
+        if #available(iOS 13.0, *) {
+            activityIndicator = UIActivityIndicatorView(style: .large)
+        } else {
+            activityIndicator = UIActivityIndicatorView(style: .gray)
+        }
+
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.tintColor = Color.violetBlue
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+
+        return activityIndicator
+    }()
+
     // MARK: Object lifecycle
 
     override init(frame: CGRect) {
@@ -70,7 +86,7 @@ class GenericWebViewView: UIView, CleanView {
 
     private func setupView() {
         backgroundColor = Color.white
-        [webKitView].forEach { addSubview($0) }
+        [webKitView, activityIndicatorView].forEach { addSubview($0) }
     }
 
     private func setupConstraints() {
@@ -78,7 +94,10 @@ class GenericWebViewView: UIView, CleanView {
             webKitView.topAnchor.constraint(equalTo: topAnchor),
             webKitView.leftAnchor.constraint(equalTo: leftAnchor),
             webKitView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            webKitView.rightAnchor.constraint(equalTo: rightAnchor)
+            webKitView.rightAnchor.constraint(equalTo: rightAnchor),
+
+            activityIndicatorView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            activityIndicatorView.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
 
@@ -95,9 +114,13 @@ class GenericWebViewView: UIView, CleanView {
 
     // MARK: Stateful view
 
-    func prepareForLoaded() {}
+    func prepareForLoaded() {
+        activityIndicatorView.stopAnimating()
+    }
 
-    func prepareForLoading() {}
+    func prepareForLoading() {
+        activityIndicatorView.startAnimating()
+    }
 
     func prepareForError() {}
 

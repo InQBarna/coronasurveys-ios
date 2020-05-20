@@ -16,4 +16,18 @@ struct Asset {
     static var splashScreen: UIImage? {
         UIImage(named: "splash-screen")
     }
+
+    enum Social {
+        static var instagram: UIImage? {
+            UIImage(named: "instagram")
+        }
+
+        static var twitter: UIImage? {
+            UIImage(named: "twitter")
+        }
+
+        static var facebook: UIImage? {
+            UIImage(named: "facebook")
+        }
+    }
 }

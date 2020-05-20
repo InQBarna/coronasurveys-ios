@@ -20,7 +20,17 @@ class HomePresenter: HomePresentationLogic {
     weak var viewController: HomeDisplayLogic?
 
     func presentView(response: Home.PrepareView.Response) {
-        let viewModel = Home.PrepareView.ViewModel()
+        let viewModel = Home.PrepareView.ViewModel(
+            title: NSLocalizedString("home", comment: ""),
+            countryCode: response.countryCode,
+            sections: [
+                .summary(text: NSLocalizedString("summary_long_text", comment: "")),
+                .webViewPlot(title: NSLocalizedString("percentage_population_symptoms", comment: ""), url: Configuration.populationSymptomsPlotUrl),
+                .about(NSLocalizedString("about_us_text", comment: "")),
+                .followUs(institutions: [.facebook(nil), .instagram(nil), .twitter(nil)]),
+                .contactUs
+            ]
+        )
         viewController?.displayView(viewModel: viewModel)
     }
 }

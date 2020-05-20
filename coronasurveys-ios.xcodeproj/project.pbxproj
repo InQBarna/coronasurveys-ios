@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -57,6 +57,20 @@
 		FFA47D6C2472DD8100A92D19 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA47D6B2472DD8100A92D19 /* UIFont+.swift */; };
 		FFA47D6E2472E11100A92D19 /* EndFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA47D6D2472E11100A92D19 /* EndFormView.swift */; };
 		FFA47D702472E38400A92D19 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA47D6F2472E38400A92D19 /* Layout.swift */; };
+		FFD955FC2474003E00BA33B4 /* HomeContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD955FB2474003E00BA33B4 /* HomeContent.swift */; };
+		FFD955FF247401C500BA33B4 /* HomeTableHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD955FE247401C500BA33B4 /* HomeTableHandler.swift */; };
+		FFD95601247402F300BA33B4 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD95600247402F300BA33B4 /* UITableView+.swift */; };
+		FFD956032474031600BA33B4 /* CellIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD956022474031600BA33B4 /* CellIdentifier.swift */; };
+		FFD956052474034900BA33B4 /* SummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD956042474034900BA33B4 /* SummaryCell.swift */; };
+		FFD95607247403F300BA33B4 /* AboutUsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD95606247403F300BA33B4 /* AboutUsCell.swift */; };
+		FFD9560B2474186F00BA33B4 /* SocialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9560A2474186F00BA33B4 /* SocialCell.swift */; };
+		FFD9560D24741B6300BA33B4 /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9560C24741B6300BA33B4 /* UIImage+.swift */; };
+		FFD9561124751F5300BA33B4 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9561024751F5300BA33B4 /* Configuration.swift */; };
+		FFD95613247520FB00BA33B4 /* WebViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD95612247520FB00BA33B4 /* WebViewCell.swift */; };
+		FFD9561624752D4B00BA33B4 /* SettingsTableHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9561524752D4B00BA33B4 /* SettingsTableHandler.swift */; };
+		FFD9561824752D5600BA33B4 /* RemindersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9561724752D5600BA33B4 /* RemindersCell.swift */; };
+		FFD9561A24752DA800BA33B4 /* SettingsContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9561924752DA800BA33B4 /* SettingsContent.swift */; };
+		FFD9561C24753E2300BA33B4 /* EmailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9561B24753E2300BA33B4 /* EmailCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,7 +78,7 @@
 		CF09CFC5F00E934DFBB5106B /* Pods-coronasurveys-ios.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coronasurveys-ios.appstore.xcconfig"; path = "Target Support Files/Pods-coronasurveys-ios/Pods-coronasurveys-ios.appstore.xcconfig"; sourceTree = "<group>"; };
 		DA8A6B78991261FC5728C07A /* Pods-coronasurveys-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coronasurveys-ios.debug.xcconfig"; path = "Target Support Files/Pods-coronasurveys-ios/Pods-coronasurveys-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		DCBC9011165C55E5798041E3 /* Pods_coronasurveys_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_coronasurveys_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FF103A182472917700909F0F /* coronasurveys-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "coronasurveys-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF103A182472917700909F0F /* Corona Surveys.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Corona Surveys.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF103A1B2472917700909F0F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FF103A242472917700909F0F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF103A272472917700909F0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -115,6 +129,20 @@
 		FFA47D6B2472DD8100A92D19 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		FFA47D6D2472E11100A92D19 /* EndFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndFormView.swift; sourceTree = "<group>"; };
 		FFA47D6F2472E38400A92D19 /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		FFD955FB2474003E00BA33B4 /* HomeContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContent.swift; sourceTree = "<group>"; };
+		FFD955FE247401C500BA33B4 /* HomeTableHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableHandler.swift; sourceTree = "<group>"; };
+		FFD95600247402F300BA33B4 /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
+		FFD956022474031600BA33B4 /* CellIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellIdentifier.swift; sourceTree = "<group>"; };
+		FFD956042474034900BA33B4 /* SummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCell.swift; sourceTree = "<group>"; };
+		FFD95606247403F300BA33B4 /* AboutUsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsCell.swift; sourceTree = "<group>"; };
+		FFD9560A2474186F00BA33B4 /* SocialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialCell.swift; sourceTree = "<group>"; };
+		FFD9560C24741B6300BA33B4 /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		FFD9561024751F5300BA33B4 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		FFD95612247520FB00BA33B4 /* WebViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewCell.swift; sourceTree = "<group>"; };
+		FFD9561524752D4B00BA33B4 /* SettingsTableHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableHandler.swift; sourceTree = "<group>"; };
+		FFD9561724752D5600BA33B4 /* RemindersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersCell.swift; sourceTree = "<group>"; };
+		FFD9561924752DA800BA33B4 /* SettingsContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsContent.swift; sourceTree = "<group>"; };
+		FFD9561B24753E2300BA33B4 /* EmailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,7 +188,7 @@
 		FF103A192472917700909F0F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FF103A182472917700909F0F /* coronasurveys-ios.app */,
+				FF103A182472917700909F0F /* Corona Surveys.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -170,6 +198,8 @@
 			children = (
 				FF103A1B2472917700909F0F /* AppDelegate.swift */,
 				FF103A512472B17400909F0F /* Router.swift */,
+				FFD9561024751F5300BA33B4 /* Configuration.swift */,
+				FFD955FA2474002E00BA33B4 /* Enum */,
 				FFA47D642472DD0E00A92D19 /* Views */,
 				FFA47D5D2472DB3700A92D19 /* Stores */,
 				FFA47D5C2472DB3200A92D19 /* Workers */,
@@ -200,6 +230,7 @@
 		FF103A3224729A1900909F0F /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				FFD955FD247401B800BA33B4 /* TableView */,
 				FF103A3324729A2900909F0F /* HomePresenter.swift */,
 				FF103A3524729A2900909F0F /* HomeRouter.swift */,
 				FF103A3624729A2900909F0F /* HomeModels.swift */,
@@ -225,6 +256,8 @@
 				FF103A4724729EE800909F0F /* UIView+Constraints.swift */,
 				FFA47D672472DD4F00A92D19 /* UIControl+.swift */,
 				FFA47D6B2472DD8100A92D19 /* UIFont+.swift */,
+				FFD95600247402F300BA33B4 /* UITableView+.swift */,
+				FFD9560C24741B6300BA33B4 /* UIImage+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -258,6 +291,7 @@
 			children = (
 				FF103A632472B3BD00909F0F /* Dependency.swift */,
 				FFA47D692472DD6400A92D19 /* Animate.swift */,
+				FFD956022474031600BA33B4 /* CellIdentifier.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -265,6 +299,7 @@
 		FF103A672472D12200909F0F /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				FFD95614247526A600BA33B4 /* TableView */,
 				FF103A682472D20100909F0F /* SettingsPresenter.swift */,
 				FF103A6A2472D20100909F0F /* SettingsRouter.swift */,
 				FF103A6B2472D20100909F0F /* SettingsModels.swift */,
@@ -326,6 +361,37 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		FFD955FA2474002E00BA33B4 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				FFD955FB2474003E00BA33B4 /* HomeContent.swift */,
+				FFD9561924752DA800BA33B4 /* SettingsContent.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
+		FFD955FD247401B800BA33B4 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				FFD955FE247401C500BA33B4 /* HomeTableHandler.swift */,
+				FFD956042474034900BA33B4 /* SummaryCell.swift */,
+				FFD9560A2474186F00BA33B4 /* SocialCell.swift */,
+				FFD95606247403F300BA33B4 /* AboutUsCell.swift */,
+				FFD95612247520FB00BA33B4 /* WebViewCell.swift */,
+				FFD9561B24753E2300BA33B4 /* EmailCell.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		FFD95614247526A600BA33B4 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				FFD9561524752D4B00BA33B4 /* SettingsTableHandler.swift */,
+				FFD9561724752D5600BA33B4 /* RemindersCell.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -348,7 +414,7 @@
 			);
 			name = "coronasurveys-ios";
 			productName = "coronasurveys-ios";
-			productReference = FF103A182472917700909F0F /* coronasurveys-ios.app */;
+			productReference = FF103A182472917700909F0F /* Corona Surveys.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -506,6 +572,8 @@
 				FFA47D562472DB2600A92D19 /* EndFormPresenter.swift in Sources */,
 				FFA47D682472DD4F00A92D19 /* UIControl+.swift in Sources */,
 				FF103A5F2472B18F00909F0F /* SplashScreenInteractor.swift in Sources */,
+				FFD9560B2474186F00BA33B4 /* SocialCell.swift in Sources */,
+				FFD95613247520FB00BA33B4 /* WebViewCell.swift in Sources */,
 				FF103A502472B0E400909F0F /* Asset.swift in Sources */,
 				FF103A5C2472B18F00909F0F /* SplashScreenRouter.swift in Sources */,
 				FF103A4324729B8600909F0F /* StatefulView.swift in Sources */,
@@ -524,28 +592,40 @@
 				FF103A3E24729A2900909F0F /* HomeInteractor.swift in Sources */,
 				FF103A5D2472B18F00909F0F /* SplashScreenModels.swift in Sources */,
 				FF103A812472D39100909F0F /* GenericWebViewPresenter.swift in Sources */,
+				FFD955FF247401C500BA33B4 /* HomeTableHandler.swift in Sources */,
 				FFA47D592472DB2600A92D19 /* EndFormModels.swift in Sources */,
+				FFD9561824752D5600BA33B4 /* RemindersCell.swift in Sources */,
 				FF103A1C2472917700909F0F /* AppDelegate.swift in Sources */,
 				FF103A642472B3BD00909F0F /* Dependency.swift in Sources */,
 				FF103A5E2472B18F00909F0F /* SplashScreenViewController.swift in Sources */,
+				FFD9561124751F5300BA33B4 /* Configuration.swift in Sources */,
 				FFA47D612472DB5900A92D19 /* PreferencesStoreProtocol.swift in Sources */,
 				FF103A4E2472B0DD00909F0F /* Icon.swift in Sources */,
+				FFD9561624752D4B00BA33B4 /* SettingsTableHandler.swift in Sources */,
+				FFD9561A24752DA800BA33B4 /* SettingsContent.swift in Sources */,
 				FF103A4124729B6900909F0F /* CleanView.swift in Sources */,
 				FF103A842472D3DD00909F0F /* GenericWebViewView.swift in Sources */,
+				FFD955FC2474003E00BA33B4 /* HomeContent.swift in Sources */,
+				FFD956032474031600BA33B4 /* CellIdentifier.swift in Sources */,
 				FFA47D6C2472DD8100A92D19 /* UIFont+.swift in Sources */,
 				FFA47D5F2472DB4E00A92D19 /* PreferencesStore.swift in Sources */,
 				FF103A3C24729A2900909F0F /* HomeModels.swift in Sources */,
+				FFD956052474034900BA33B4 /* SummaryCell.swift in Sources */,
 				FF103A522472B17400909F0F /* Router.swift in Sources */,
 				FF103A752472D21000909F0F /* SettingsView.swift in Sources */,
+				FFD95607247403F300BA33B4 /* AboutUsCell.swift in Sources */,
 				FF103A4824729EE800909F0F /* UIView+Constraints.swift in Sources */,
 				FFA47D6E2472E11100A92D19 /* EndFormView.swift in Sources */,
 				FF103A722472D20200909F0F /* SettingsViewController.swift in Sources */,
 				FF103A3D24729A2900909F0F /* HomeViewController.swift in Sources */,
+				FFD95601247402F300BA33B4 /* UITableView+.swift in Sources */,
 				FFA47D702472E38400A92D19 /* Layout.swift in Sources */,
 				FF103A3B24729A2900909F0F /* HomeRouter.swift in Sources */,
 				FF103A732472D20200909F0F /* SettingsInteractor.swift in Sources */,
 				FFA47D5B2472DB2600A92D19 /* EndFormInteractor.swift in Sources */,
+				FFD9560D24741B6300BA33B4 /* UIImage+.swift in Sources */,
 				FFA47D632472DBF400A92D19 /* PreferencesWorker.swift in Sources */,
+				FFD9561C24753E2300BA33B4 /* EmailCell.swift in Sources */,
 				FFA47D6A2472DD6400A92D19 /* Animate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -633,7 +713,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.inqbarna.coronasurveys-ios";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Corona Surveys";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.inqbarna.coronasurveys-ios";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -769,7 +849,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.inqbarna.coronasurveys-ios";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Corona Surveys";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.inqbarna.coronasurveys-ios";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -791,7 +871,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.inqbarna.coronasurveys-ios";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Corona Surveys";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development com.inqbarna.coronasurveys-ios";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

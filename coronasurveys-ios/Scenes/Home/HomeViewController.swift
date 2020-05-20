@@ -100,7 +100,17 @@ class HomeViewController: UIViewController, HomeDisplayLogic, AutoUpdateContext 
     }
 
     func displayView(viewModel: Home.PrepareView.ViewModel) {
-        // nameTextField.text = viewModel.name
+        title = viewModel.title
+
+        let homeViewVM = HomeViewVM(sections: viewModel.sections, deviceLocale: viewModel.countryCode)
+        homeView.display(viewModel: homeViewVM)
+    }
+
+    // MARK: UpdateCountryCode
+
+    func updateCountryCode(with code: String) {
+        let request = Home.UpdateCountryCode.Request(newCountryCode: code)
+        interactor?.updateCountryCode(request: request)
     }
 
     // MARK: Helpers
@@ -108,13 +118,27 @@ class HomeViewController: UIViewController, HomeDisplayLogic, AutoUpdateContext 
     @objc private func settingsTapped() {
         router?.routeToSettings()
     }
-
-    private func openCountry() {}
 }
 
 // MARK: HomeViewDelegate
 
 extension HomeViewController: HomeViewDelegate {
+    func didTapFacebook() {}
+
+    func didTapTwitter() {}
+
+    func didTapInstagram() {}
+
+    func didTapSeeTeamButton() {}
+
+    func didTapSeeDataButton() {}
+
+    func didTapSendEmail() {}
+
+    func didSelectConutry(code: String) {
+        updateCountryCode(with: code)
+    }
+
     func didTapStartForm() {
         router?.routeToForm()
     }

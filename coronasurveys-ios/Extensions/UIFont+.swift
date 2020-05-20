@@ -89,7 +89,7 @@ public extension UIFont {
             case .body3:
                 return .bold
             case .body1, .body2:
-                return .medium
+                return .regular
             case .button:
                 return .semiBold
             case .buttonCancel:
@@ -115,7 +115,7 @@ public extension UIFont {
         }
     }
 
-    static func font(_ easyBuyFont: FontStyle) -> UIFont {
-        .font(of: easyBuyFont.style, with: easyBuyFont.font)
+    static func font(_ fontStyle: FontStyle) -> UIFont {
+        .font(of: fontStyle.style, with: fontStyle.font)
     }
 }

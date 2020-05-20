@@ -11,24 +11,37 @@ import UIKit
 
 protocol HomeViewDelegate: AnyObject {
     func didTapStartForm()
+    func didSelectConutry(code: String)
+    func didTapSeeTeamButton()
+    func didTapSeeDataButton()
+    func didTapSendEmail()
+    func didTapFacebook()
+    func didTapTwitter()
+    func didTapInstagram()
 }
 
-struct HomeViewVM: Equatable {}
+struct HomeViewVM: Equatable {
+    let sections: [HomeContent]
+    let deviceLocale: String?
+}
 
 class HomeView: UIView, CleanView {
     typealias VMType = HomeViewVM
 
-    static var emptySkeleton: HomeViewVM = HomeViewVM()
+    static var emptySkeleton: HomeViewVM = HomeViewVM(sections: [], deviceLocale: nil)
     var viewModel: HomeViewVM = HomeView.emptySkeleton
     var viewState: ViewState = .empty
 
     weak var delegate: HomeViewDelegate?
+    var handler: HomeTableHandler?
 
     // MARK: UI
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = Color.white
+        tableView.separatorStyle = .none
+        tableView.tableFooterView = UIView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
         return tableView
@@ -37,6 +50,10 @@ class HomeView: UIView, CleanView {
     private var bottomView: UIView = {
         let view = UIView()
         view.backgroundColor = Color.white
+        view.layer.shadowColor = UIColor.gray.cgColor
+        view.layer.shadowOpacity = 0.3
+        view.layer.shadowOffset = CGSize.zero
+        view.layer.shadowRadius = 5
         view.translatesAutoresizingMaskIntoConstraints = false
 
         return view
@@ -50,11 +67,12 @@ class HomeView: UIView, CleanView {
         return view
     }()
 
-    private lazy var acceptOrderButton: LargeButton = {
+    private lazy var startFormButton: LargeButton = {
         let button = LargeButton(style: .filled, showSpinnerWhenTapped: false)
         button.setTitle(NSLocalizedString("start_form", comment: ""), for: .normal)
         button.addTarget(self, action: #selector(startForm), for: .touchUpInside)
         button.heightAnchor.constraint(equalToConstant: Layout.buttonHeight).isActive = true
+        button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
     }()
@@ -64,7 +82,11 @@ class HomeView: UIView, CleanView {
         picker.showPhoneCodeInView = false
         picker.showCountryNameInView = true
         picker.showCountryCodeInView = false
-        picker.font = .font(.body1)
+        picker.font = .font(.button)
+        picker.delegate = self
+        picker.heightAnchor.constraint(equalToConstant: Layout.buttonHeight).isActive = true
+        picker.translatesAutoresizingMaskIntoConstraints = false
+
         return picker
     }()
 
@@ -72,21 +94,19 @@ class HomeView: UIView, CleanView {
         let label = UILabel()
         label.font = .font(.caption)
         label.textColor = Color.midGray
-        label.text = NSLocalizedString("select_your_country", comment: "")
+        label.text = NSLocalizedString("select_your_country_and_start", comment: "")
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
     }()
 
-    private lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.alignment = .fill
-        stackView.distribution = .equalCentering
-        stackView.spacing = 10
-        stackView.axis = .vertical
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var chevronImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = Icon.chevronRight?.tint(with: Color.violetBlue)
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
 
-        return stackView
+        return imageView
     }()
 
     // MARK: Object lifecycle
@@ -106,31 +126,44 @@ class HomeView: UIView, CleanView {
 
     private func setupView() {
         backgroundColor = Color.white
-        [tableView, bottomView, bottomSafeView, stackView].forEach { addSubview($0) }
-        [countryPickerIndications, countryPicker, acceptOrderButton].forEach { stackView.addArrangedSubview($0) }
+        [tableView, bottomView, bottomSafeView, countryPickerIndications, countryPicker, startFormButton, chevronImageView].forEach { addSubview($0) }
     }
 
     private func setupConstraints() {
-        if traitCollection.horizontalSizeClass == .regular {
-            tableView.constraintsToReadableLayout()
-        } else {
-            tableView.constraintsToSuperview()
-        }
-
         NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: topAnchor),
+            tableView.leftAnchor.constraint(equalTo: leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: rightAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomView.topAnchor),
+
             bottomView.bottomAnchor.constraint(equalTo: bottomSafeView.topAnchor),
             bottomView.leftAnchor.constraint(equalTo: leftAnchor),
             bottomView.rightAnchor.constraint(equalTo: rightAnchor),
-            bottomView.topAnchor.constraint(equalTo: stackView.topAnchor, constant: -10),
+            bottomView.topAnchor.constraint(equalTo: countryPickerIndications.topAnchor, constant: -2),
 
             bottomSafeView.bottomAnchor.constraint(equalTo: bottomAnchor),
             bottomSafeView.leftAnchor.constraint(equalTo: leftAnchor),
             bottomSafeView.rightAnchor.constraint(equalTo: rightAnchor),
             bottomSafeView.topAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
 
-            stackView.bottomAnchor.constraint(equalTo: bottomSafeView.topAnchor, constant: -10),
-            stackView.leftAnchor.constraint(equalTo: layoutMarginsGuide.leftAnchor),
-            stackView.rightAnchor.constraint(equalTo: layoutMarginsGuide.rightAnchor)
+            startFormButton.bottomAnchor.constraint(equalTo: bottomSafeView.topAnchor, constant: -10),
+            startFormButton.leftAnchor.constraint(equalTo: layoutMarginsGuide.leftAnchor),
+            startFormButton.rightAnchor.constraint(equalTo: layoutMarginsGuide.rightAnchor),
+            startFormButton.heightAnchor.constraint(equalToConstant: Layout.buttonHeight),
+
+            countryPicker.bottomAnchor.constraint(equalTo: startFormButton.topAnchor, constant: -10),
+            countryPicker.leftAnchor.constraint(equalTo: layoutMarginsGuide.leftAnchor),
+            countryPicker.rightAnchor.constraint(equalTo: layoutMarginsGuide.rightAnchor),
+            countryPicker.heightAnchor.constraint(equalToConstant: Layout.buttonHeight),
+
+            countryPickerIndications.bottomAnchor.constraint(equalTo: countryPicker.topAnchor, constant: -10),
+            countryPickerIndications.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            countryPickerIndications.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+
+            chevronImageView.trailingAnchor.constraint(equalTo: countryPicker.trailingAnchor),
+            chevronImageView.centerYAnchor.constraint(equalTo: countryPicker.centerYAnchor),
+            chevronImageView.widthAnchor.constraint(equalToConstant: 20),
+            chevronImageView.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
 
@@ -138,6 +171,16 @@ class HomeView: UIView, CleanView {
 
     func display(viewModel: HomeViewVM) {
         self.viewModel = viewModel
+
+        if handler == nil {
+            handler = HomeTableHandler(sections: viewModel.sections, tableView: tableView)
+        } else {
+            handler?.update(sections: viewModel.sections)
+        }
+
+        if let deviceLocale = viewModel.deviceLocale {
+            countryPicker.setCountryByCode(deviceLocale)
+        }
     }
 
     // MARK: Stateful view
@@ -154,5 +197,41 @@ class HomeView: UIView, CleanView {
 
     @objc private func startForm() {
         delegate?.didTapStartForm()
+    }
+}
+
+// MARK: CountryPickerViewDelegate
+
+extension HomeView: CountryPickerViewDelegate {
+    func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country) {
+        delegate?.didSelectConutry(code: country.code)
+    }
+}
+
+// MARK: HomeTableHandlerDelegate
+
+extension HomeView: HomeTableHandlerDelegate {
+    func didTapFacebook() {
+        delegate?.didTapFacebook()
+    }
+
+    func didTapTwitter() {
+        delegate?.didTapTwitter()
+    }
+
+    func didTapInstagram() {
+        delegate?.didTapInstagram()
+    }
+
+    func didTapSeeTeamButton() {
+        delegate?.didTapSeeTeamButton()
+    }
+
+    func didTapSeeDataButton() {
+        delegate?.didTapSeeDataButton()
+    }
+
+    func didTapSendEmail() {
+        delegate?.didTapSendEmail()
     }
 }

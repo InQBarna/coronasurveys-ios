@@ -50,6 +50,7 @@ class HomeRouter: NSObject, HomeRoutingLogic, HomeDataPassing {
 
     func navigateToForm(source: HomeViewController, destination: GenericWebViewViewController) {
         let navigationController = UINavigationController(rootViewController: destination)
+        navigationController.modalPresentationStyle = .overFullScreen
         source.present(navigationController, animated: true, completion: nil)
     }
 
@@ -61,6 +62,9 @@ class HomeRouter: NSObject, HomeRoutingLogic, HomeDataPassing {
 
     func passDataToForm(source: HomeDataStore, destination: inout GenericWebViewDataStore) {
         destination.context = source.context
-        destination.webViewURL = "https://mobile.coronasurveys.org/es"
+
+        if let countryCode = source.countryCode {
+            destination.webViewURL = Configuration.surveyUrl(countryCode: countryCode)
+        }
     }
 }

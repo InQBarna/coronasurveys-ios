@@ -19,7 +19,7 @@ struct Color {
 
     static var violetBlue: UIColor? {
         if #available(iOS 11.0, *) {
-            return UIColor(named: "smalt-blue")
+            return UIColor(named: "violet-blue")
         } else {
             return UIColor(red: 0.431, green: 0.322, blue: 0.718, alpha: 1)
         }
@@ -27,7 +27,7 @@ struct Color {
 
     static var ziggurat: UIColor? {
         if #available(iOS 11.0, *) {
-            return UIColor(named: "smalt-blue")
+            return UIColor(named: "ziggurat-blue")
         } else {
             return UIColor(red: 0.714, green: 0.831, blue: 0.859, alpha: 1)
         }

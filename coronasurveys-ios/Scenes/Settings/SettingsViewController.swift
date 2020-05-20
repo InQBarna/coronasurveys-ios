@@ -62,19 +62,36 @@ class SettingsViewController: UIViewController, SettingsDisplayLogic {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        doSomething()
+        setupNavigationBar()
+        prepareView()
     }
 
-    // MARK: Do something
+    // MARK: Setup methods
 
-    // @IBOutlet weak var nameTextField: UITextField!
+    func setupNavigationBar() {
+        navigationController?.navigationBar.tintColor = Color.black
 
-    func doSomething() {
+        let leftBarButtonItem = UIBarButtonItem(image: Icon.xmark, style: .plain, target: self, action: #selector(dismissViewController))
+        navigationItem.leftBarButtonItem = leftBarButtonItem
+    }
+
+    // MARK: Prepare view
+
+    func prepareView() {
         let request = Settings.PrepareView.Request()
         interactor?.prepareView(request: request)
     }
 
     func displayView(viewModel: Settings.PrepareView.ViewModel) {
-        // nameTextField.text = viewModel.name
+        title = viewModel.title
+
+        let settingsViewVM = SettingsViewVM(sections: viewModel.sections)
+        settingsView.display(viewModel: settingsViewVM)
+    }
+
+    // MARK: Helpers
+
+    @objc private func dismissViewController() {
+        dismiss(animated: true, completion: nil)
     }
 }

@@ -8,14 +8,18 @@
 
 import UIKit
 
-struct SettingsViewVM: Equatable {}
+struct SettingsViewVM: Equatable {
+    let sections: [SettingsContent]
+}
 
 class SettingsView: UIView, CleanView {
     typealias VMType = SettingsViewVM
 
-    static var emptySkeleton: SettingsViewVM = SettingsViewVM()
+    static var emptySkeleton: SettingsViewVM = SettingsViewVM(sections: [])
     var viewModel: SettingsViewVM = SettingsView.emptySkeleton
     var viewState: ViewState = .empty
+
+    var handler: SettingsTableHandler?
 
     // MARK: UI
 
@@ -59,6 +63,12 @@ class SettingsView: UIView, CleanView {
 
     func display(viewModel: SettingsViewVM) {
         self.viewModel = viewModel
+
+        if handler == nil {
+            handler = SettingsTableHandler(sections: viewModel.sections, tableView: tableView)
+        } else {
+            handler?.update(sections: viewModel.sections)
+        }
     }
 
     // MARK: Stateful view

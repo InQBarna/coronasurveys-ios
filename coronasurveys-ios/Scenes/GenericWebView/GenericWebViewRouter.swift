@@ -13,7 +13,7 @@
 import UIKit
 
 @objc protocol GenericWebViewRoutingLogic {
-    // func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToEndForm()
 }
 
 protocol GenericWebViewDataPassing {
@@ -26,29 +26,23 @@ class GenericWebViewRouter: NSObject, GenericWebViewRoutingLogic, GenericWebView
 
     // MARK: Routing
 
-    // func routeToSomewhere(segue: UIStoryboardSegue?) {
-    //  if let segue = segue {
-    //    let destinationVC = segue.destination as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //  } else {
-    //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-    //  }
-    // }
+    func routeToEndForm() {
+        let destinationVC = EndFormViewController()
+        var destinationDS = destinationVC.router!.dataStore!
+        passDataToEndForm(source: dataStore!, destination: &destinationDS)
+        navigateToEndForm(source: viewController!, destination: destinationVC)
+    }
 
     // MARK: Navigation
 
-    // func navigateToSomewhere(source: GenericWebViewViewController, destination: SomewhereViewController) {
-    //  source.show(destination, sender: nil)
-    // }
+    func navigateToEndForm(source: GenericWebViewViewController, destination: EndFormViewController) {
+        let navigationController = UINavigationController(rootViewController: destination)
+        source.present(navigationController, animated: true, completion: nil)
+    }
 
     // MARK: Passing data
 
-    // func passDataToSomewhere(source: GenericWebViewDataStore, destination: inout SomewhereDataStore) {
-    //  destination.name = source.name
-    // }
+    func passDataToEndForm(source: GenericWebViewDataStore, destination: inout EndFormDataStore) {
+        destination.context = source.context
+    }
 }
