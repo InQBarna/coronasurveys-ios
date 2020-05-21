@@ -12,4 +12,8 @@ protocol PreferencesStoreProtocol {
     func scheduleNotification(for interval: NotificationInterval)
     func cancelNotification()
     func hasScheduledNotification(completion: @escaping (Bool) -> Void)
+    func saveSelectedCountry(_ country: String)
+    func retrieveSelectedCountry() -> String?
+    func saveSelectedLanguage(_ language: String)
+    func retrieveSelectedLanguage() -> String?
 }

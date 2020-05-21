@@ -14,6 +14,7 @@ import UIKit
 
 protocol GenericWebViewBusinessLogic {
     func prepareWebView(request: GenericWebView.PrepareWebView.Request)
+    func saveLanguage(_ newLanguage: String)
 }
 
 protocol GenericWebViewDataStore: DependencyInjectable {
@@ -35,10 +36,18 @@ class GenericWebViewInteractor: GenericWebViewBusinessLogic, GenericWebViewDataS
         userDefinedUrlsString
     }
 
+    // MARK: Workers
+
+    let preferencesWorker = PreferencesWorker(store: PreferencesStore())
+
     // MARK: Business logic
 
     func prepareWebView(request: GenericWebView.PrepareWebView.Request) {
         let response = GenericWebView.PrepareWebView.Response(urlString: webViewURL)
         presenter?.presentWebView(response: response)
+    }
+
+    func saveLanguage(_ newLanguage: String) {
+        preferencesWorker.saveSelectedLanguage(newLanguage)
     }
 }

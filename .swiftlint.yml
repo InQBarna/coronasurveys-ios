@@ -27,6 +27,10 @@ type_name:
     - Id
     - in
 
+disabled_rules:
+  - multiple_closures_with_trailing_closure
+
 excluded:
+  - coronasurveys-ios/L10N.swift
   - Pods
   - .bundle

@@ -127,15 +127,29 @@ extension GenericWebViewViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         print("🌏 URL: \(navigationAction.request.url?.absoluteString ?? "no-url")")
 
+        if let language = navigationAction.request.url?.queryDictionary?["lang"] {
+            interactor?.saveLanguage(language)
+        }
+
         if navigationAction.navigationType == .linkActivated {
-            decisionHandler(.cancel)
             genericWebViewView.updateState(new: .loaded)
-            if navigationAction.request.url?.pathExtension == "ics" {
+            let url = navigationAction.request.url
+
+            if url?.pathExtension == "ics" {
                 router?.routeToEndForm()
-            } else {
+                decisionHandler(.cancel)
+            } else if url?.absoluteString.contains("survey.coronasurveys.org") == true {
+                decisionHandler(.allow)
+            } else if url?.scheme == "http" || url?.scheme == "https" {
+                decisionHandler(.cancel)
                 if let url = navigationAction.request.url {
                     let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
                     present(vc, animated: true)
+                }
+            } else {
+                decisionHandler(.cancel)
+                if let url = url {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
             }
         } else {

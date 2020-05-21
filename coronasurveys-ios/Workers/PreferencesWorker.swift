@@ -26,4 +26,20 @@ class PreferencesWorker: PreferencesStoreProtocol {
     func hasScheduledNotification(completion: @escaping (Bool) -> Void) {
         store.hasScheduledNotification(completion: completion)
     }
+
+    func saveSelectedCountry(_ country: String) {
+        store.saveSelectedCountry(country)
+    }
+
+    func retrieveSelectedCountry() -> String? {
+        store.retrieveSelectedCountry()
+    }
+
+    func saveSelectedLanguage(_ language: String) {
+        store.saveSelectedLanguage(language)
+    }
+
+    func retrieveSelectedLanguage() -> String? {
+        store.retrieveSelectedLanguage()
+    }
 }

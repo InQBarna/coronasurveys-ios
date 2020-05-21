@@ -18,8 +18,8 @@ protocol HomeBusinessLogic {
 }
 
 protocol HomeDataStore: DependencyInjectable {
-    var countryCode: String? { get set }
-    var languageCode: String? { get set }
+    var countryCode: String? { get }
+    var languageCode: String? { get }
 }
 
 class HomeInteractor: HomeBusinessLogic, HomeDataStore {
@@ -28,8 +28,18 @@ class HomeInteractor: HomeBusinessLogic, HomeDataStore {
     // MARK: Data store
 
     var context: [Dependency: Any?]?
-    var countryCode: String? = NSLocale.current.regionCode
-    var languageCode: String? = NSLocale.current.languageCode
+
+    var countryCode: String? {
+        preferencesWorker.retrieveSelectedCountry() ?? NSLocale.current.regionCode
+    }
+
+    var languageCode: String? {
+        preferencesWorker.retrieveSelectedLanguage() ?? NSLocale.current.languageCode
+    }
+
+    // MARK: Worker
+
+    var preferencesWorker = PreferencesWorker(store: PreferencesStore())
 
     // MARK: Business logic
 
@@ -39,6 +49,8 @@ class HomeInteractor: HomeBusinessLogic, HomeDataStore {
     }
 
     func updateCountryCode(request: Home.UpdateCountryCode.Request) {
-        countryCode = request.newCountryCode
+        if let newCountryCode = request.newCountryCode {
+            preferencesWorker.saveSelectedCountry(newCountryCode)
+        }
     }
 }

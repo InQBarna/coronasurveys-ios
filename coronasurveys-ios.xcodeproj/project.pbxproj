@@ -79,6 +79,8 @@
 		FFD956262475664E00BA33B4 /* ModalDismissal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD956242475664E00BA33B4 /* ModalDismissal.swift */; };
 		FFD9562824756AC200BA33B4 /* NotificationInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9562724756AC200BA33B4 /* NotificationInterval.swift */; };
 		FFD9562A2475760A00BA33B4 /* MailHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD956292475760A00BA33B4 /* MailHelper.swift */; };
+		FFD9562C2476742700BA33B4 /* UserDefaultsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9562B2476742700BA33B4 /* UserDefaultsConstants.swift */; };
+		FFD9562E2476797200BA33B4 /* URL+.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9562D2476797200BA33B4 /* URL+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -159,6 +161,8 @@
 		FFD956242475664E00BA33B4 /* ModalDismissal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalDismissal.swift; sourceTree = "<group>"; };
 		FFD9562724756AC200BA33B4 /* NotificationInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationInterval.swift; sourceTree = "<group>"; };
 		FFD956292475760A00BA33B4 /* MailHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailHelper.swift; sourceTree = "<group>"; };
+		FFD9562B2476742700BA33B4 /* UserDefaultsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsConstants.swift; sourceTree = "<group>"; };
+		FFD9562D2476797200BA33B4 /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,6 +282,7 @@
 				FFA47D6B2472DD8100A92D19 /* UIFont+.swift */,
 				FFD95600247402F300BA33B4 /* UITableView+.swift */,
 				FFD9560C24741B6300BA33B4 /* UIImage+.swift */,
+				FFD9562D2476797200BA33B4 /* URL+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 				FF103A4D2472B0DD00909F0F /* Icon.swift */,
 				FF103A4F2472B0E400909F0F /* Asset.swift */,
 				FFA47D6F2472E38400A92D19 /* Layout.swift */,
+				FFD9562B2476742700BA33B4 /* UserDefaultsConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -622,6 +628,7 @@
 				FF103A502472B0E400909F0F /* Asset.swift in Sources */,
 				FF103A5C2472B18F00909F0F /* SplashScreenRouter.swift in Sources */,
 				FF103A4324729B8600909F0F /* StatefulView.swift in Sources */,
+				FFD9562C2476742700BA33B4 /* UserDefaultsConstants.swift in Sources */,
 				FF103A4B2472A87E00909F0F /* Color.swift in Sources */,
 				FFA47D5A2472DB2600A92D19 /* EndFormViewController.swift in Sources */,
 				FF103A3924729A2900909F0F /* HomePresenter.swift in Sources */,
@@ -656,6 +663,7 @@
 				FFD956032474031600BA33B4 /* CellIdentifier.swift in Sources */,
 				FFA47D6C2472DD8100A92D19 /* UIFont+.swift in Sources */,
 				FFA47D5F2472DB4E00A92D19 /* PreferencesStore.swift in Sources */,
+				FFD9562E2476797200BA33B4 /* URL+.swift in Sources */,
 				FF103A3C24729A2900909F0F /* HomeModels.swift in Sources */,
 				FFD956052474034900BA33B4 /* SummaryCell.swift in Sources */,
 				FF103A522472B17400909F0F /* Router.swift in Sources */,

@@ -44,4 +44,22 @@ class PreferencesStore: PreferencesStoreProtocol {
     func cancelNotification() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
+
+    func saveSelectedCountry(_ country: String) {
+        UserDefaults.standard.set(country, forKey: UserDefaultsConstants.savedCountry)
+    }
+
+    func retrieveSelectedCountry() -> String? {
+        let savedCountry = UserDefaults.standard.string(forKey: UserDefaultsConstants.savedCountry)
+        return savedCountry
+    }
+
+    func saveSelectedLanguage(_ language: String) {
+        UserDefaults.standard.set(language, forKey: UserDefaultsConstants.savedLanguage)
+    }
+
+    func retrieveSelectedLanguage() -> String? {
+        let language = UserDefaults.standard.string(forKey: UserDefaultsConstants.savedLanguage)
+        return language
+    }
 }
