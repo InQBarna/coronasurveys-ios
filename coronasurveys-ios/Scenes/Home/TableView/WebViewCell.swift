@@ -61,6 +61,7 @@ class WebViewCell: UITableViewCell, CellIdentifier {
 
     public func setup(with title: String?, url: String?) {
         titleLabel.text = title
+        titleLabel.numberOfLines = 0
 
         if let urlRaw = url, let url = URL(string: urlRaw) {
             let request = URLRequest(url: url)

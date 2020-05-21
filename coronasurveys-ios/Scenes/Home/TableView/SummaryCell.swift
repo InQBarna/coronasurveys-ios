@@ -113,10 +113,10 @@ class SummaryCell: UITableViewCell, CellIdentifier {
     // MARK: Helpers
 
     @objc private func seeTeamButton() {
-        delegate?.didTapSeeDataButton()
+        delegate?.didTapSeeTeamButton()
     }
 
     @objc private func seeDataButton() {
-        delegate?.didTapSeeTeamButton()
+        delegate?.didTapSeeDataButton()
     }
 }
