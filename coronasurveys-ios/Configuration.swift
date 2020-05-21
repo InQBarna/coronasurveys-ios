@@ -20,9 +20,9 @@ struct Configuration {
         "https://coronasurveys.org/grafana/d-solo/G_Aw4CrZk/coronasurveys?tab=advanced&panelId=20&orgId=1&from=1584576000000"
     }
 
-    static let email: String = "email@example.com"
+    static let email: String = "coronasurveys@gmail.com"
 
-    static func surveyUrl(countryCode: String) -> String {
-        "https://mobile.coronasurveys.org/\(countryCode.lowercased())"
+    static func surveyUrl(countryCode: String, languageCode: String) -> String {
+        "https://mobile.coronasurveys.org/\(countryCode.lowercased())/\(languageCode.lowercased())"
     }
 }
