@@ -154,7 +154,7 @@ extension HomeViewController: HomeViewDelegate {
     }
 
     func didTapSendEmail(_ sender: UIButton) {
-        let apps = MailApps.allAvailable(recipient: Configuration.email, subject: NSLocalizedString("send_mail_subject", comment: ""), body: nil)
+        let apps = MailApps.allAvailable(recipient: Configuration.email, subject: L10N.sendMailSubject, body: nil)
         let mailLinker = MailLinker(availableApps: apps, sender: sender)
 
         DispatchQueue.main.async {

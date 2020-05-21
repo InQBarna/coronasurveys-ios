@@ -24,7 +24,7 @@ class SettingsPresenter: SettingsPresentationLogic {
 
     func presentView(response: Settings.PrepareView.Response) {
         let viewModel = Settings.PrepareView.ViewModel(
-            title: NSLocalizedString("settings", comment: ""),
+            title: L10N.settings,
             sections: [.reminders(active: response.hasScheduledNotification)]
         )
         viewController?.displayView(viewModel: viewModel)

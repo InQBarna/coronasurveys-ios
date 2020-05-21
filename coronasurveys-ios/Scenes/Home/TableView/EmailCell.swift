@@ -19,7 +19,7 @@ class EmailCell: UITableViewCell, CellIdentifier {
 
     private lazy var emailButton: LargeButton = {
         let button = LargeButton(style: .bordered, showSpinnerWhenTapped: false)
-        button.setTitle(NSLocalizedString("email_us", comment: ""), for: .normal)
+        button.setTitle(L10N.emailUs, for: .normal)
         button.addTarget(self, action: #selector(didTapSendEmail), for: .touchUpInside)
         button.heightAnchor.constraint(equalToConstant: Layout.buttonHeight).isActive = true
         button.setTitleColor(Color.smaltBlue, for: .normal)

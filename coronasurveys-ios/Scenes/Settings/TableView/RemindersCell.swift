@@ -19,7 +19,7 @@ class RemindersCell: UITableViewCell, CellIdentifier {
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("reminders_on", comment: "")
+        label.text = L10N.reminderEnabled
         label.textColor = Color.black
         label.font = .font(.body1)
         label.translatesAutoresizingMaskIntoConstraints = false

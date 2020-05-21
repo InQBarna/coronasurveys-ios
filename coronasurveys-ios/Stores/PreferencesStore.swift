@@ -27,11 +27,11 @@ class PreferencesStore: PreferencesStoreProtocol {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
 
         let content = UNMutableNotificationContent()
-        content.title = NSLocalizedString("reminder_survey", comment: "")
-        content.subtitle = NSLocalizedString("reminder_survey_body", comment: "")
+        content.title = L10N.reminderNotificationTitle
+        content.subtitle = L10N.reminderNotificationBody
         content.sound = UNNotificationSound.default
 
-        // show this notification five seconds from now
+        // show this notification intervalSeconds from now
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval.intervalSeconds, repeats: true)
 
         // choose a random identifier

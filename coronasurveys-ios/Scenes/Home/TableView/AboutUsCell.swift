@@ -13,7 +13,7 @@ class AboutUsCell: UITableViewCell, CellIdentifier {
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("about_us_title", comment: "")
+        label.text = L10N.aboutProjectTitle
         label.textColor = Color.smaltBlue
         label.font = .font(.headline6)
         label.translatesAutoresizingMaskIntoConstraints = false

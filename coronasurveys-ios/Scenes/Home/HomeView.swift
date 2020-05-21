@@ -69,7 +69,7 @@ class HomeView: UIView, CleanView {
 
     private lazy var startFormButton: LargeButton = {
         let button = LargeButton(style: .filled, showSpinnerWhenTapped: false)
-        button.setTitle(NSLocalizedString("start_form", comment: ""), for: .normal)
+        button.setTitle(L10N.fillSurvey, for: .normal)
         button.addTarget(self, action: #selector(startForm), for: .touchUpInside)
         button.heightAnchor.constraint(equalToConstant: Layout.buttonHeight).isActive = true
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -94,7 +94,7 @@ class HomeView: UIView, CleanView {
         let label = UILabel()
         label.font = .font(.caption)
         label.textColor = Color.midGray
-        label.text = NSLocalizedString("select_your_country_and_start", comment: "")
+        label.text = L10N.selectYourCountryAndStart
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label

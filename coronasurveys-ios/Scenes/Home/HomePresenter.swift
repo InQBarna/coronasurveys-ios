@@ -21,12 +21,12 @@ class HomePresenter: HomePresentationLogic {
 
     func presentView(response: Home.PrepareView.Response) {
         let viewModel = Home.PrepareView.ViewModel(
-            title: NSLocalizedString("home", comment: ""),
+            title: L10N.coronasurveys,
             countryCode: response.countryCode,
             sections: [
-                .summary(text: NSLocalizedString("summary_long_text", comment: "")),
-                .webViewPlot(title: NSLocalizedString("percentage_population_symptoms", comment: ""), url: Configuration.populationSymptomsPlotUrl),
-                .about(NSLocalizedString("about_us_text", comment: "")),
+                .summary(text: L10N.projectSummaryText),
+                .webViewPlot(title: L10N.percentagePopulationSymptoms, url: Configuration.populationSymptomsPlotUrl),
+                .about(L10N.aboutProjectText),
                 .followUs(institutions: [.facebook, .instagram, .twitter]),
                 .contactUs
             ]

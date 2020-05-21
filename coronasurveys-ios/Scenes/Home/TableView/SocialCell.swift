@@ -21,7 +21,7 @@ class SocialCell: UITableViewCell, CellIdentifier {
 
     private lazy var followUsLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("follow_us", comment: "")
+        label.text = L10N.followUsTitle
         label.textColor = Color.smaltBlue
         label.font = .font(.headline6)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -33,7 +33,7 @@ class SocialCell: UITableViewCell, CellIdentifier {
         let label = UILabel()
         label.font = .font(.body1)
         label.textColor = Color.midGray
-        label.text = NSLocalizedString("follow_us_description", comment: "")
+        label.text = L10N.followUsText
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.translatesAutoresizingMaskIntoConstraints = false

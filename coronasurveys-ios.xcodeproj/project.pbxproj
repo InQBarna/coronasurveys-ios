@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66CD949F2475E82300E420A2 /* L10N.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CD949E2475E82300E420A2 /* L10N.swift */; };
+		66CD94A72475EB4600E420A2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 66CD94A52475EB4600E420A2 /* Localizable.strings */; };
 		A2BDADE4CF619D282FF95F74 /* Pods_coronasurveys_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCBC9011165C55E5798041E3 /* Pods_coronasurveys_ios.framework */; };
 		FF103A1C2472917700909F0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF103A1B2472917700909F0F /* AppDelegate.swift */; };
 		FF103A252472917700909F0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF103A242472917700909F0F /* Assets.xcassets */; };
@@ -81,6 +83,8 @@
 
 /* Begin PBXFileReference section */
 		5A21360A920E10886BD8E95F /* Pods-coronasurveys-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coronasurveys-ios.release.xcconfig"; path = "Target Support Files/Pods-coronasurveys-ios/Pods-coronasurveys-ios.release.xcconfig"; sourceTree = "<group>"; };
+		66CD949E2475E82300E420A2 /* L10N.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = L10N.swift; sourceTree = "<group>"; };
+		66CD94A62475EB4600E420A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CF09CFC5F00E934DFBB5106B /* Pods-coronasurveys-ios.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coronasurveys-ios.appstore.xcconfig"; path = "Target Support Files/Pods-coronasurveys-ios/Pods-coronasurveys-ios.appstore.xcconfig"; sourceTree = "<group>"; };
 		DA8A6B78991261FC5728C07A /* Pods-coronasurveys-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coronasurveys-ios.debug.xcconfig"; path = "Target Support Files/Pods-coronasurveys-ios/Pods-coronasurveys-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		DCBC9011165C55E5798041E3 /* Pods_coronasurveys_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_coronasurveys_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,6 +212,7 @@
 		FF103A1A2472917700909F0F /* coronasurveys-ios */ = {
 			isa = PBXGroup;
 			children = (
+				66CD949E2475E82300E420A2 /* L10N.swift */,
 				FF103A1B2472917700909F0F /* AppDelegate.swift */,
 				FF103A512472B17400909F0F /* Router.swift */,
 				FFD9561024751F5300BA33B4 /* Configuration.swift */,
@@ -225,6 +230,7 @@
 				FF103A262472917700909F0F /* LaunchScreen.storyboard */,
 				FF103A292472917700909F0F /* Info.plist */,
 				FFD9561D24754AC800BA33B4 /* GoogleService-Info.plist */,
+				66CD94A52475EB4600E420A2 /* Localizable.strings */,
 			);
 			path = "coronasurveys-ios";
 			sourceTree = "<group>";
@@ -490,6 +496,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF103A282472917700909F0F /* LaunchScreen.storyboard in Resources */,
+				66CD94A72475EB4600E420A2 /* Localizable.strings in Resources */,
 				FF103A252472917700909F0F /* Assets.xcassets in Resources */,
 				FFD9561E24754AC800BA33B4 /* GoogleService-Info.plist in Resources */,
 			);
@@ -659,6 +666,7 @@
 				FF103A722472D20200909F0F /* SettingsViewController.swift in Sources */,
 				FF103A3D24729A2900909F0F /* HomeViewController.swift in Sources */,
 				FFD95601247402F300BA33B4 /* UITableView+.swift in Sources */,
+				66CD949F2475E82300E420A2 /* L10N.swift in Sources */,
 				FFA47D702472E38400A92D19 /* Layout.swift in Sources */,
 				FF103A3B24729A2900909F0F /* HomeRouter.swift in Sources */,
 				FF103A732472D20200909F0F /* SettingsInteractor.swift in Sources */,
@@ -673,6 +681,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		66CD94A52475EB4600E420A2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				66CD94A62475EB4600E420A2 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		FF103A262472917700909F0F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -688,6 +704,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -764,6 +781,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -824,6 +842,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

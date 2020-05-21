@@ -45,7 +45,7 @@ PODS:
     - GoogleUtilities/Environment (~> 6.6)
     - GoogleUtilities/UserDefaults (~> 6.6)
     - PromisesObjC (~> 1.2)
-  - Fluent (0.1.0)
+  - Fluent (0.2.0)
   - GoogleAppMeasurement (6.5.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
@@ -88,7 +88,7 @@ DEPENDENCIES:
   - CountryPickerView
   - Firebase/Analytics
   - Firebase/Crashlytics
-  - Fluent (from `http://gitlab.inqbarna.com/romaxin/fluent-ios/-/raw/0.1.0/Fluent.podspec`)
+  - Fluent (from `http://gitlab.inqbarna.com/romaxin/fluent-ios/-/raw/0.2.0/Fluent.podspec`)
   - SwiftFormat/CLI
   - SwiftLint
 
@@ -114,7 +114,7 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   Fluent:
-    :podspec: http://gitlab.inqbarna.com/romaxin/fluent-ios/-/raw/0.1.0/Fluent.podspec
+    :podspec: http://gitlab.inqbarna.com/romaxin/fluent-ios/-/raw/0.2.0/Fluent.podspec
 
 SPEC CHECKSUMS:
   CountryPickerView: 08ff5f391143aa79e2ae21b0eaa5c15395a80d22
@@ -126,7 +126,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnosticsInterop: 296e2c5f5314500a850ad0b83e9e7c10b011a850
   FirebaseCrashlytics: fff345f16a07f0b23cb342d8de5a42cec6de3492
   FirebaseInstallations: 2119fb3e46b0a88bfdbf12562f855ee3252462fa
-  Fluent: c8c11dbd16ffa24df1f58824b5a65d3029b9e510
+  Fluent: 84a1ca9c906b7b3faf77db0828d847bcad73bf5c
   GoogleAppMeasurement: 4c644d86835d827bab30ab6aabb9ecaf1f500735
   GoogleDataTransport: f6f8eba931df03ebd2232ff4645aa85f8f47b5ab
   GoogleDataTransportCCTSupport: d70a561f7d236af529fee598835caad5e25f6d3d
@@ -136,6 +136,6 @@ SPEC CHECKSUMS:
   SwiftFormat: b72e592ea0979aeee53f6052abff291181364933
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
 
-PODFILE CHECKSUM: 2c6ed6850ba7aef77ef45ac88d3dbe0ecddc0de1
+PODFILE CHECKSUM: e7747737401a20cafaed69b674294f69919d8879
 
 COCOAPODS: 1.9.1

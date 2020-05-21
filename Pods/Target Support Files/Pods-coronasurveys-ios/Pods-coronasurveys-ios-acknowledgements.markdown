@@ -1505,7 +1505,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 The MIT License (MIT)
 
-Copyright (c) 2020 Realm Inc.
+Copyright (c) 2020 InQBarna Kenkyuu Jo.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

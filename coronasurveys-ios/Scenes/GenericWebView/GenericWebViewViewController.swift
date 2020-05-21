@@ -88,6 +88,7 @@ class GenericWebViewViewController: UIViewController, GenericWebViewDisplayLogic
     // MARK: Setup methods
 
     func setupNavigationBar() {
+        title = L10N.survey
         navigationController?.navigationBar.tintColor = Color.black
 
         let leftBarButtonItem = UIBarButtonItem(image: Icon.xmark, style: .plain, target: self, action: #selector(dismissViewController))

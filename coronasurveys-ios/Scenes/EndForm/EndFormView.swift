@@ -44,7 +44,7 @@ class EndFormView: UIStackView, CleanView {
         let label = UILabel()
         label.font = .font(.headline4)
         label.textColor = Color.smaltBlue
-        label.text = NSLocalizedString("add_reminders", comment: "")
+        label.text = L10N.addReminderTitle
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -54,7 +54,7 @@ class EndFormView: UIStackView, CleanView {
         let label = UILabel()
         label.font = .font(.body1)
         label.textColor = Color.midGray
-        label.text = NSLocalizedString("thank_you_text_reminders", comment: "")
+        label.text = L10N.addReminderText
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -64,7 +64,7 @@ class EndFormView: UIStackView, CleanView {
 
     private lazy var registerDailyNotificationsFormButton: LargeButton = {
         let button = LargeButton(style: .filled, showSpinnerWhenTapped: false)
-        button.setTitle(NSLocalizedString("daily_reminder", comment: ""), for: .normal)
+        button.setTitle(L10N.dailyReminder, for: .normal)
         button.addTarget(self, action: #selector(dailyNotifications), for: .touchUpInside)
         button.heightAnchor.constraint(equalToConstant: Layout.buttonHeight).isActive = true
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -74,7 +74,7 @@ class EndFormView: UIStackView, CleanView {
 
     private lazy var registerWeeklyNotificationsFormButton: LargeButton = {
         let button = LargeButton(style: .simple)
-        button.setTitle(NSLocalizedString("weekly_reminder", comment: ""), for: .normal)
+        button.setTitle(L10N.weeklyReminder, for: .normal)
         button.addTarget(self, action: #selector(weeklyNotifications), for: .touchUpInside)
         button.heightAnchor.constraint(equalToConstant: Layout.buttonHeight).isActive = true
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -84,7 +84,7 @@ class EndFormView: UIStackView, CleanView {
 
     private lazy var noThanksButton: LargeButton = {
         let button = LargeButton(style: .simple)
-        button.setTitle(NSLocalizedString("no_thanks", comment: ""), for: .normal)
+        button.setTitle(L10N.noThanks, for: .normal)
         button.addTarget(self, action: #selector(noNotifications), for: .touchUpInside)
         button.heightAnchor.constraint(equalToConstant: Layout.buttonHeight).isActive = true
         button.translatesAutoresizingMaskIntoConstraints = false

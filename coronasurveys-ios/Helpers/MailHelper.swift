@@ -34,11 +34,11 @@ enum MailApps {
     var title: String {
         switch self {
         case .mail:
-            return NSLocalizedString("Mail", comment: "")
+            return L10N.mailApp
         case .gmail:
-            return NSLocalizedString("Gmail", comment: "")
+            return L10N.gmailApp
         case .outlook:
-            return NSLocalizedString("Outlook", comment: "")
+            return L10N.outlookApp
         }
     }
 
@@ -126,8 +126,7 @@ class MailLinker: UIAlertController {
     }
 
     private func setupForMailClientPicker() {
-        title = NSLocalizedString("select_app", comment: "")
-        message = NSLocalizedString("select_any_app_description", comment: "")
+        title = L10N.selectMailApp
 
         var actions: [UIAlertAction] = availableApps.compactMap { (mailApp) -> UIAlertAction? in
             if !UIApplication.shared.canOpenURL(mailApp.urlScheme) {
@@ -142,13 +141,12 @@ class MailLinker: UIAlertController {
             })
         }
 
-        actions.append(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: nil))
+        actions.append(UIAlertAction(title: L10N.cancel, style: .cancel, handler: nil))
         actions.forEach { addAction($0) }
     }
 
     private func setupForErrorAlert() {
-        title = NSLocalizedString("no_mail_app_available", comment: "")
-        message = NSLocalizedString("no_mail_app_available", comment: "")
-        addAction(UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel, handler: nil))
+        title = L10N.noMailAppsAvailable
+        addAction(UIAlertAction(title: L10N.cancel, style: .cancel, handler: nil))
     }
 }

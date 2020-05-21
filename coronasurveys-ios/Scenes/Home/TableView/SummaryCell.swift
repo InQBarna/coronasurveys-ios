@@ -20,7 +20,7 @@ class SummaryCell: UITableViewCell, CellIdentifier {
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = NSLocalizedString("summary_title", comment: "")
+        label.text = L10N.projectSummaryTitle
         label.textColor = Color.smaltBlue
         label.font = .font(.headline6)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +41,7 @@ class SummaryCell: UITableViewCell, CellIdentifier {
 
     private lazy var teamButton: LargeButton = {
         let button = LargeButton(style: .bordered, showSpinnerWhenTapped: false)
-        button.setTitle(NSLocalizedString("team", comment: ""), for: .normal)
+        button.setTitle(L10N.team, for: .normal)
         button.addTarget(self, action: #selector(seeTeamButton), for: .touchUpInside)
         button.heightAnchor.constraint(equalToConstant: Layout.buttonHeight).isActive = true
         button.setTitleColor(Color.smaltBlue, for: .normal)
@@ -53,7 +53,7 @@ class SummaryCell: UITableViewCell, CellIdentifier {
 
     private lazy var seeOpenSourceDataButton: LargeButton = {
         let button = LargeButton(style: .bordered, showSpinnerWhenTapped: false)
-        button.setTitle(NSLocalizedString("see_open_source_data", comment: ""), for: .normal)
+        button.setTitle(L10N.allCollectedData, for: .normal)
         button.addTarget(self, action: #selector(seeDataButton), for: .touchUpInside)
         button.heightAnchor.constraint(equalToConstant: Layout.buttonHeight).isActive = true
         button.setTitleColor(Color.smaltBlue, for: .normal)
