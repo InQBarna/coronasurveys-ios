@@ -1,5 +1,6 @@
 Device ID	Device Name
 5eff5079acaa3340140ed6105daf70f67eec20da	Inqbarna - iPhone SE - Antonio
+00008030-001a1c6a360a802e	CoronaSurveys - iPhone 11 - Antonio F
 00008020-001055210C38002E	Alexandros Katsaprakakis’s iPhone
 67cd4f81bfb1e17a0e2297ed559476da03e0cf4d	Alexandros's iPhone
 a858775239be95480db079b2cf3b4e38eaa19f9c	Alexis AppleWatch
