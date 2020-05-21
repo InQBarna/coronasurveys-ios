@@ -127,7 +127,7 @@ extension GenericWebViewViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         print("🌏 URL: \(navigationAction.request.url?.absoluteString ?? "no-url")")
 
-        if let language = navigationAction.request.url?.queryDictionary?["lang"] {
+        if let language = navigationAction.request.url?.queryValue(for: "lang") {
             interactor?.saveLanguage(language)
         }
 
@@ -154,17 +154,6 @@ extension GenericWebViewViewController: WKNavigationDelegate {
             }
         } else {
             decisionHandler(.allow)
-        }
-    }
-
-    // MARK: Helpers
-
-    private func containsUrl(callbackUrlString: String, acceptedUrls: [String]) -> Bool {
-        acceptedUrls.contains { acceptedUrl in
-            guard let url = URL(string: acceptedUrl) else { return false }
-            guard let callbackUrl = URL(string: callbackUrlString) else { return false }
-
-            return url.path.lowercased() == callbackUrl.path.lowercased() && callbackUrl.host?.lowercased() == url.host?.lowercased()
         }
     }
 }

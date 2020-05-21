@@ -318,6 +318,17 @@ extension L10N {
 
       *Default value (en)*
 
+      *“Select country”*
+     */
+    static var selectCountry: String {
+        NSLocalizedString("select_country", comment: "")
+    }
+
+    /**
+      No comment provided
+
+      *Default value (en)*
+
       *“Select mail app”*
      */
     static var selectMailApp: String {
