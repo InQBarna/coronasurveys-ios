@@ -14,23 +14,31 @@ import UIKit
 
 protocol HomePresentationLogic {
     func presentView(response: Home.PrepareView.Response)
+    func presentCountryCode(response: Home.UpdateCountryCode.Response)
 }
 
 class HomePresenter: HomePresentationLogic {
     weak var viewController: HomeDisplayLogic?
 
+    let sections: [HomeContent] = [
+        .summary(text: L10N.projectSummaryText),
+        .webViewPlot(title: L10N.percentagePopulationSymptoms, url: Configuration.populationSymptomsPlotUrl),
+        .about(L10N.aboutProjectText),
+        .followUs(institutions: [.facebook, .instagram, .twitter]),
+        .contactUs
+    ]
+
     func presentView(response: Home.PrepareView.Response) {
         let viewModel = Home.PrepareView.ViewModel(
             title: L10N.coronasurveys,
             countryCode: response.countryCode,
-            sections: [
-                .summary(text: L10N.projectSummaryText),
-                .webViewPlot(title: L10N.percentagePopulationSymptoms, url: Configuration.populationSymptomsPlotUrl),
-                .about(L10N.aboutProjectText),
-                .followUs(institutions: [.facebook, .instagram, .twitter]),
-                .contactUs
-            ]
+            sections: sections
         )
         viewController?.displayView(viewModel: viewModel)
+    }
+
+    func presentCountryCode(response: Home.UpdateCountryCode.Response) {
+        let viewModel = Home.UpdateCountryCode.ViewModel(countryCode: response.countryCode, sections: sections)
+        viewController?.displayCountryCode(viewModel: viewModel)
     }
 }

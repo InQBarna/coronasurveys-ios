@@ -10,10 +10,12 @@
 //  see http://clean-swift.com
 //
 
+import SKCountryPicker
 import UIKit
 
 protocol HomeDisplayLogic: AnyObject {
     func displayView(viewModel: Home.PrepareView.ViewModel)
+    func displayCountryCode(viewModel: Home.UpdateCountryCode.ViewModel)
 }
 
 class HomeViewController: UIViewController, HomeDisplayLogic, AutoUpdateContext {
@@ -113,6 +115,11 @@ class HomeViewController: UIViewController, HomeDisplayLogic, AutoUpdateContext 
         interactor?.updateCountryCode(request: request)
     }
 
+    func displayCountryCode(viewModel: Home.UpdateCountryCode.ViewModel) {
+        let homeViewVM = HomeViewVM(sections: viewModel.sections, deviceLocale: viewModel.countryCode)
+        homeView.display(viewModel: homeViewVM)
+    }
+
     // MARK: Helpers
 
     @objc private func settingsTapped() {
@@ -123,6 +130,14 @@ class HomeViewController: UIViewController, HomeDisplayLogic, AutoUpdateContext 
 // MARK: HomeViewDelegate
 
 extension HomeViewController: HomeViewDelegate {
+    func didTapCountry() {
+        let countryController = CountryPickerWithSectionViewController.presentController(on: self) { [weak self] country in
+            self?.updateCountryCode(with: country.countryCode)
+        }
+
+        countryController.navigationController?.navigationBar.tintColor = Color.black
+    }
+
     func didTapFacebook() {
         if let url = URL(string: Configuration.facebookUrl) {
             UIApplication.shared.open(url)

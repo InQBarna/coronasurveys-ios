@@ -34,8 +34,13 @@ enum Home {
             let newCountryCode: String?
         }
 
-        struct Response {}
+        struct Response {
+            let countryCode: String?
+        }
 
-        struct ViewModel {}
+        struct ViewModel {
+            let countryCode: String?
+            let sections: [HomeContent]
+        }
     }
 }

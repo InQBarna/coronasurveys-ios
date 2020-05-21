@@ -51,6 +51,9 @@ class HomeInteractor: HomeBusinessLogic, HomeDataStore {
     func updateCountryCode(request: Home.UpdateCountryCode.Request) {
         if let newCountryCode = request.newCountryCode {
             preferencesWorker.saveSelectedCountry(newCountryCode)
+
+            let response = Home.UpdateCountryCode.Response(countryCode: newCountryCode)
+            presenter?.presentCountryCode(response: response)
         }
     }
 }

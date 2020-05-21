@@ -49,7 +49,7 @@ class Router: NSObject {
 
         let navigationController = UINavigationController(rootViewController: homeViewController)
         if #available(iOS 11.0, *) {
-            navigationController.navigationBar.prefersLargeTitles = false
+            navigationController.navigationBar.prefersLargeTitles = true
         }
         navigationController.navigationBar.tintColor = Color.black
         window?.rootViewController = navigationController

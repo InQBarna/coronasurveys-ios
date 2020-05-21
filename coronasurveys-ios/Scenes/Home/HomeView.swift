@@ -6,7 +6,7 @@
 //  Copyright © 2020 Inqbarna. All rights reserved.
 //
 
-import CountryPickerView
+import SKCountryPicker
 import UIKit
 
 protocol HomeViewDelegate: AnyObject {
@@ -18,6 +18,7 @@ protocol HomeViewDelegate: AnyObject {
     func didTapFacebook()
     func didTapTwitter()
     func didTapInstagram()
+    func didTapCountry()
 }
 
 struct HomeViewVM: Equatable {
@@ -71,23 +72,30 @@ class HomeView: UIView, CleanView {
         let button = LargeButton(style: .filled, showSpinnerWhenTapped: false)
         button.setTitle(L10N.fillSurvey, for: .normal)
         button.addTarget(self, action: #selector(startForm), for: .touchUpInside)
-        button.heightAnchor.constraint(equalToConstant: Layout.buttonHeight).isActive = true
         button.translatesAutoresizingMaskIntoConstraints = false
 
         return button
     }()
 
-    private lazy var countryPicker: CountryPickerView = {
-        let picker = CountryPickerView()
-        picker.showPhoneCodeInView = false
-        picker.showCountryNameInView = true
-        picker.showCountryCodeInView = false
-        picker.font = .font(.button)
-        picker.delegate = self
-        picker.heightAnchor.constraint(equalToConstant: Layout.buttonHeight).isActive = true
-        picker.translatesAutoresizingMaskIntoConstraints = false
+    private lazy var countryPickerFlag: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 3
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
 
-        return picker
+        return imageView
+    }()
+
+    private lazy var countryPicker: LargeButton = {
+        let button = LargeButton(style: .simple)
+        button.setTitleColor(Color.black, for: .normal)
+        button.titleLabel?.textAlignment = .left
+        button.contentHorizontalAlignment = .left
+        button.addTarget(self, action: #selector(didSelectCountry), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+
+        return button
     }()
 
     private lazy var countryPickerIndications: UILabel = {
@@ -102,7 +110,7 @@ class HomeView: UIView, CleanView {
 
     private lazy var chevronImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = Icon.chevronRight?.tint(with: Color.violetBlue)
+        imageView.image = Icon.chevronRight?.tint(with: Color.midGray)
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -126,7 +134,16 @@ class HomeView: UIView, CleanView {
 
     private func setupView() {
         backgroundColor = Color.white
-        [tableView, bottomView, bottomSafeView, countryPickerIndications, countryPicker, startFormButton, chevronImageView].forEach { addSubview($0) }
+        [
+            tableView,
+            bottomView,
+            bottomSafeView,
+            countryPickerIndications,
+            countryPicker,
+            countryPickerFlag,
+            startFormButton,
+            chevronImageView
+        ].forEach { addSubview($0) }
     }
 
     private func setupConstraints() {
@@ -151,16 +168,21 @@ class HomeView: UIView, CleanView {
             startFormButton.rightAnchor.constraint(equalTo: layoutMarginsGuide.rightAnchor),
             startFormButton.heightAnchor.constraint(equalToConstant: Layout.buttonHeight),
 
+            countryPickerFlag.centerYAnchor.constraint(equalTo: countryPicker.centerYAnchor),
+            countryPickerFlag.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            countryPickerFlag.widthAnchor.constraint(equalToConstant: 55),
+            countryPickerFlag.heightAnchor.constraint(equalToConstant: 32),
+
             countryPicker.bottomAnchor.constraint(equalTo: startFormButton.topAnchor, constant: -10),
-            countryPicker.leftAnchor.constraint(equalTo: layoutMarginsGuide.leftAnchor),
-            countryPicker.rightAnchor.constraint(equalTo: layoutMarginsGuide.rightAnchor),
+            countryPicker.leadingAnchor.constraint(equalTo: countryPickerFlag.trailingAnchor, constant: 5),
+            countryPicker.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
             countryPicker.heightAnchor.constraint(equalToConstant: Layout.buttonHeight),
 
             countryPickerIndications.bottomAnchor.constraint(equalTo: countryPicker.topAnchor, constant: -10),
             countryPickerIndications.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
             countryPickerIndications.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
 
-            chevronImageView.trailingAnchor.constraint(equalTo: countryPicker.trailingAnchor),
+            chevronImageView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
             chevronImageView.centerYAnchor.constraint(equalTo: countryPicker.centerYAnchor),
             chevronImageView.widthAnchor.constraint(equalToConstant: 20),
             chevronImageView.heightAnchor.constraint(equalToConstant: 20)
@@ -179,8 +201,12 @@ class HomeView: UIView, CleanView {
             handler?.update(sections: viewModel.sections)
         }
 
-        if let deviceLocale = viewModel.deviceLocale {
-            countryPicker.setCountryByCode(deviceLocale)
+        if let deviceLocale = viewModel.deviceLocale, let country = CountryManager.shared.country(withCode: deviceLocale) {
+            countryPicker.setTitle(country.countryName, for: .normal)
+            countryPickerFlag.image = country.flag
+        } else {
+            countryPicker.setTitle(NSLocalizedString("select_country", comment: ""), for: .normal)
+            countryPickerFlag.image = nil
         }
     }
 
@@ -199,13 +225,9 @@ class HomeView: UIView, CleanView {
     @objc private func startForm() {
         delegate?.didTapStartForm()
     }
-}
 
-// MARK: CountryPickerViewDelegate
-
-extension HomeView: CountryPickerViewDelegate {
-    func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country) {
-        delegate?.didSelectConutry(code: country.code)
+    @objc private func didSelectCountry() {
+        delegate?.didTapCountry()
     }
 }
 
