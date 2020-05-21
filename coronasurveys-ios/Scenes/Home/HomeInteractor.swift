@@ -19,6 +19,7 @@ protocol HomeBusinessLogic {
 
 protocol HomeDataStore: DependencyInjectable {
     var countryCode: String? { get set }
+    var languageCode: String? { get set }
 }
 
 class HomeInteractor: HomeBusinessLogic, HomeDataStore {
@@ -28,6 +29,7 @@ class HomeInteractor: HomeBusinessLogic, HomeDataStore {
 
     var context: [Dependency: Any?]?
     var countryCode: String? = NSLocale.current.regionCode
+    var languageCode: String? = NSLocale.current.languageCode
 
     // MARK: Business logic
 
