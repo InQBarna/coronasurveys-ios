@@ -38,7 +38,7 @@ class HomePresenter: HomePresentationLogic {
     }
 
     func presentCountryCode(response: Home.UpdateCountryCode.Response) {
-        let viewModel = Home.UpdateCountryCode.ViewModel(countryCode: response.countryCode, sections: sections)
+        let viewModel = Home.UpdateCountryCode.ViewModel(countryCode: response.countryCode)
         viewController?.displayCountryCode(viewModel: viewModel)
     }
 }

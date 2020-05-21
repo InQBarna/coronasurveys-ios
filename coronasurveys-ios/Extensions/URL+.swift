@@ -9,20 +9,13 @@
 import Foundation
 
 extension URL {
-    var queryDictionary: [String: String]? {
-        guard let query = self.query else { return nil }
+    func queryValue(for key: String) -> String? {
+        let request = URLComponents(url: self, resolvingAgainstBaseURL: false)
 
-        var queryStrings = [String: String]()
-        for pair in query.components(separatedBy: "&") {
-            let key = pair.components(separatedBy: "=")[0]
+        let queryItem = request?.queryItems?.first(where: { (queryItem) -> Bool in
+            queryItem.name == key
+        })
 
-            let value = pair
-                .components(separatedBy: "=")[1]
-                .replacingOccurrences(of: "+", with: " ")
-                .removingPercentEncoding ?? ""
-
-            queryStrings[key] = value
-        }
-        return queryStrings
+        return queryItem?.value
     }
 }

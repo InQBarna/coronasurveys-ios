@@ -22,7 +22,7 @@ protocol HomeViewDelegate: AnyObject {
 }
 
 struct HomeViewVM: Equatable {
-    let sections: [HomeContent]
+    let sections: [HomeContent]?
     let deviceLocale: String?
 }
 
@@ -194,18 +194,20 @@ class HomeView: UIView, CleanView {
     func display(viewModel: HomeViewVM) {
         self.viewModel = viewModel
 
-        if handler == nil {
-            handler = HomeTableHandler(sections: viewModel.sections, tableView: tableView)
-            handler?.delegate = self
-        } else {
-            handler?.update(sections: viewModel.sections)
+        if let sections = viewModel.sections {
+            if handler == nil {
+                handler = HomeTableHandler(sections: sections, tableView: tableView)
+                handler?.delegate = self
+            } else {
+                handler?.update(sections: sections)
+            }
         }
 
         if let deviceLocale = viewModel.deviceLocale, let country = CountryManager.shared.country(withCode: deviceLocale) {
             countryPicker.setTitle(country.countryName, for: .normal)
             countryPickerFlag.image = country.flag
         } else {
-            countryPicker.setTitle(NSLocalizedString("select_country", comment: ""), for: .normal)
+            countryPicker.setTitle(L10N.selectCountry, for: .normal)
             countryPickerFlag.image = nil
         }
     }

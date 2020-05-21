@@ -116,7 +116,7 @@ class HomeViewController: UIViewController, HomeDisplayLogic, AutoUpdateContext 
     }
 
     func displayCountryCode(viewModel: Home.UpdateCountryCode.ViewModel) {
-        let homeViewVM = HomeViewVM(sections: viewModel.sections, deviceLocale: viewModel.countryCode)
+        let homeViewVM = HomeViewVM(sections: nil, deviceLocale: viewModel.countryCode)
         homeView.display(viewModel: homeViewVM)
     }
 
@@ -131,11 +131,14 @@ class HomeViewController: UIViewController, HomeDisplayLogic, AutoUpdateContext 
 
 extension HomeViewController: HomeViewDelegate {
     func didTapCountry() {
+        CountryManager.shared.removeFilter(.countryDialCode)
+
         let countryController = CountryPickerWithSectionViewController.presentController(on: self) { [weak self] country in
             self?.updateCountryCode(with: country.countryCode)
         }
 
         countryController.navigationController?.navigationBar.tintColor = Color.black
+        countryController.isCountryDialHidden = true
     }
 
     func didTapFacebook() {

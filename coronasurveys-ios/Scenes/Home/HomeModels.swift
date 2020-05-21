@@ -40,7 +40,6 @@ enum Home {
 
         struct ViewModel {
             let countryCode: String?
-            let sections: [HomeContent]
         }
     }
 }
