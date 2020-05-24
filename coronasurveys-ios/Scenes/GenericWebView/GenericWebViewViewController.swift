@@ -42,6 +42,7 @@ class GenericWebViewViewController: UIViewController, GenericWebViewDisplayLogic
     lazy var genericWebViewView: GenericWebViewView = {
         let view = GenericWebViewView()
         view.delegate = self
+        view.setupSurveyFinishedScriptForVC(self)
         return view
     }()
 
@@ -155,5 +156,11 @@ extension GenericWebViewViewController: WKNavigationDelegate {
         } else {
             decisionHandler(.allow)
         }
+    }
+}
+
+extension GenericWebViewViewController: WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        // TODO: Josep, esto se llama cuando acabamos el survey
     }
 }

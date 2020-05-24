@@ -125,4 +125,10 @@ class GenericWebViewView: UIView, CleanView {
     func prepareForError() {}
 
     func prepareForEmpty() {}
+
+    // MARK: Aux methods
+
+    func setupSurveyFinishedScriptForVC(_ viewController: GenericWebViewViewController) {
+        webKitView.configuration.userContentController.add(viewController, name: "appCallback")
+    }
 }
