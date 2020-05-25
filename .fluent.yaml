@@ -25,7 +25,7 @@ actions:
   release:
   - check
   debug:
-  - scan
+  - check
 
 # API Key to be used when Fluent shares data with a cloud service
 app_secret: __HERE_MY_APP_SECRET__

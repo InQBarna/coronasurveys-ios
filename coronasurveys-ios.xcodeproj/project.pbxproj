@@ -446,6 +446,7 @@
 			buildConfigurationList = FF103A2C2472917700909F0F /* Build configuration list for PBXNativeTarget "coronasurveys-ios" */;
 			buildPhases = (
 				301A6A201D9FFB405ADE1398 /* [CP] Check Pods Manifest.lock */,
+				66EB170D247C0D2700E646A3 /* ShellScript */,
 				FF103A142472917700909F0F /* Sources */,
 				FF103A152472917700909F0F /* Frameworks */,
 				FF103A162472917700909F0F /* Resources */,
@@ -570,6 +571,23 @@
 			shellPath = /bin/sh;
 			shellScript = "${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat $SRCROOT\n";
 			showEnvVarsInLog = 0;
+		};
+		66EB170D247C0D2700E646A3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Pods/Fluent/fluent\n";
 		};
 		AE08144D35891B00BD57AA6B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

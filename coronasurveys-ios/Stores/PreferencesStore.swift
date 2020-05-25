@@ -17,7 +17,6 @@ class PreferencesStore: PreferencesStoreProtocol {
     func hasScheduledNotification(completion: @escaping (Bool) -> Void) {
         UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
             DispatchQueue.main.async {
-                print(requests)
                 completion(requests.count > 0)
             }
         }
@@ -43,6 +42,14 @@ class PreferencesStore: PreferencesStoreProtocol {
 
     func cancelNotification() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+    }
+
+    func notificationsAuthStatus(completion: @escaping (UNAuthorizationStatus) -> Void) {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            DispatchQueue.main.async {
+                completion(settings.authorizationStatus)
+            }
+        }
     }
 
     func saveSelectedCountry(_ country: String) {

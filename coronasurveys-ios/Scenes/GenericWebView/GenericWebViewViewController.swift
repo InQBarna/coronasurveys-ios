@@ -21,6 +21,8 @@ class GenericWebViewViewController: UIViewController, GenericWebViewDisplayLogic
     var interactor: GenericWebViewBusinessLogic?
     var router: (NSObjectProtocol & GenericWebViewRoutingLogic & GenericWebViewDataPassing)?
 
+    let prefsWorker = PreferencesWorker(store: PreferencesStore())
+
     // MARK: AutoUpdateContext
 
     var childrenViewControllers: [UIViewController]? {
@@ -114,6 +116,16 @@ class GenericWebViewViewController: UIViewController, GenericWebViewDisplayLogic
     @objc private func dismissViewController() {
         dismiss(animated: true, completion: nil)
     }
+
+    private func goToSettings() {
+        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+            return
+        }
+
+        if UIApplication.shared.canOpenURL(settingsUrl) {
+            UIApplication.shared.open(settingsUrl, completionHandler: nil)
+        }
+    }
 }
 
 extension GenericWebViewViewController: WKNavigationDelegate {
@@ -161,6 +173,27 @@ extension GenericWebViewViewController: WKNavigationDelegate {
 
 extension GenericWebViewViewController: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        // TODO: Josep, esto se llama cuando acabamos el survey
+        prefsWorker.notificationsAuthStatus { status in
+            if status != .denied {
+                self.prefsWorker.hasScheduledNotification { hasScheduledNotification in
+                    if !hasScheduledNotification {
+                        self.router?.routeToEndForm()
+                    }
+                }
+            } else {
+                let settingsAction = UIAlertAction(title: L10N.goToSettings, style: .default) { _ in
+                    self.goToSettings()
+                }
+                let cancelAction = UIAlertAction(title: L10N.cancel, style: .cancel)
+
+                let alertController = UIAlertController(title: L10N.enableNotificationsAlertTitle,
+                                                        message: L10N.enableNotificationsAlertText, preferredStyle: .alert)
+
+                alertController.addAction(settingsAction)
+                alertController.addAction(cancelAction)
+
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }
     }
 }

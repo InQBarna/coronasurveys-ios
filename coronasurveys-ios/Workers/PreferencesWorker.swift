@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UserNotifications
 
 class PreferencesWorker: PreferencesStoreProtocol {
     private let store: PreferencesStoreProtocol
@@ -25,6 +26,10 @@ class PreferencesWorker: PreferencesStoreProtocol {
 
     func hasScheduledNotification(completion: @escaping (Bool) -> Void) {
         store.hasScheduledNotification(completion: completion)
+    }
+
+    func notificationsAuthStatus(completion: @escaping (UNAuthorizationStatus) -> Void) {
+        store.notificationsAuthStatus(completion: completion)
     }
 
     func saveSelectedCountry(_ country: String) {

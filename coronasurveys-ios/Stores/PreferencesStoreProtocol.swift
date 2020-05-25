@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UserNotifications
 
 protocol PreferencesStoreProtocol {
     func scheduleNotification(for interval: NotificationInterval)
@@ -16,4 +17,5 @@ protocol PreferencesStoreProtocol {
     func retrieveSelectedCountry() -> String?
     func saveSelectedLanguage(_ language: String)
     func retrieveSelectedLanguage() -> String?
+    func notificationsAuthStatus(completion: @escaping (UNAuthorizationStatus) -> Void)
 }

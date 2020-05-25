@@ -22,6 +22,10 @@ struct Configuration {
     static let email: String = "coronasurveys@gmail.com"
 
     static func surveyUrl(countryCode: String, languageCode: String) -> String {
-        "https://mobile.coronasurveys.org/\(countryCode.lowercased())/\(languageCode.lowercased())"
+        #if DEBUG
+            return "https://mobile.coronasurveys.org/?r=survey/index&sid=991378"
+        #else
+            return "https://mobile.coronasurveys.org/\(countryCode.lowercased())/\(languageCode.lowercased())"
+        #endif
     }
 }
