@@ -12,7 +12,5 @@ target 'coronasurveys-ios' do
   pod 'SwiftLint'
   pod 'SwiftFormat/CLI'
   pod 'SKCountryPicker'
-  pod 'Firebase/Analytics'
-  pod 'Firebase/Crashlytics'
   pod 'Fluent', :podspec => 'http://gitlab.inqbarna.com/romaxin/fluent-ios/-/raw/0.4.0/Fluent.podspec'
 end

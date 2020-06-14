@@ -6,7 +6,6 @@
 //  Copyright © 2020 Inqbarna. All rights reserved.
 //
 
-import Firebase
 import UIKit
 
 @UIApplicationMain
@@ -15,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var router: Router?
 
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        FirebaseApp.configure()
         router = Router(window: window)
         return true
     }
