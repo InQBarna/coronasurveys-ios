@@ -27,7 +27,7 @@ class SplashScreenInteractor: SplashScreenBusinessLogic, SplashScreenDataStore {
 
     var context: [Dependency: Any?]?
 
-    // MARK: Do something
+    // MARK: Business logic
 
     func prepareView(request: SplashScreen.PrepareView.Request) {
         let response = SplashScreen.PrepareView.Response()
