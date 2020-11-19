@@ -1,0 +1,31 @@
+# Directory in your project containing the *.lproj folders for your localized files
+localizations_path: coronasurveys-ios
+
+# Directory or list of directories containing your source code. Note that you should not include any 3rd party libraries, frameworks, Pods,…
+source_path: coronasurveys-ios
+
+# When enabled, Fluent will look for key usages and tell you which keys are not used in your code anymore.
+check_usage: true
+
+# Enable this option to tell Fluent to generate the L10N struct so you can use your localized strings like this:
+# titleLabel.text = L10N.wonderfulIdea
+use_resource_class: true
+
+# Enable if you want Fluent to convert your keys (that should be snake_case to camelCase when populating the L10N struct
+camel_case_keys: true
+
+# Enable to have Fluent include every key in every language file, even if it is empty.
+export_empty_strings: true
+
+# Select whether issues found by Fluent should be considered as error or warning when running as a step of a Xcode build).
+severity: warning
+
+# Dictionary specifying which actions Fluent should run when running in a particular XCode configuration (debug, release,…)
+actions:
+  release:
+  - check
+  debug:
+  - check
+
+# API Key to be used when Fluent shares data with a cloud service
+app_secret: __HERE_MY_APP_SECRET__
