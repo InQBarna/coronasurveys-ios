@@ -76,8 +76,8 @@ class SplashScreenViewController: UIViewController, SplashScreenDisplayLogic {
         view = splashScreenView
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         prepareView()
     }
 

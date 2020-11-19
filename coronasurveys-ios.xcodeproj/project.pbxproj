@@ -73,7 +73,6 @@
 		FFD9561824752D5600BA33B4 /* RemindersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9561724752D5600BA33B4 /* RemindersCell.swift */; };
 		FFD9561A24752DA800BA33B4 /* SettingsContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9561924752DA800BA33B4 /* SettingsContent.swift */; };
 		FFD9561C24753E2300BA33B4 /* EmailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9561B24753E2300BA33B4 /* EmailCell.swift */; };
-		FFD9561E24754AC800BA33B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFD9561D24754AC800BA33B4 /* GoogleService-Info.plist */; };
 		FFD956202475646D00BA33B4 /* SocialNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9561F2475646D00BA33B4 /* SocialNetwork.swift */; };
 		FFD956252475664E00BA33B4 /* ModalPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD956232475664E00BA33B4 /* ModalPresentation.swift */; };
 		FFD956262475664E00BA33B4 /* ModalDismissal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD956242475664E00BA33B4 /* ModalDismissal.swift */; };
@@ -155,7 +154,6 @@
 		FFD9561724752D5600BA33B4 /* RemindersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersCell.swift; sourceTree = "<group>"; };
 		FFD9561924752DA800BA33B4 /* SettingsContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsContent.swift; sourceTree = "<group>"; };
 		FFD9561B24753E2300BA33B4 /* EmailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCell.swift; sourceTree = "<group>"; };
-		FFD9561D24754AC800BA33B4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FFD9561F2475646D00BA33B4 /* SocialNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetwork.swift; sourceTree = "<group>"; };
 		FFD956232475664E00BA33B4 /* ModalPresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalPresentation.swift; sourceTree = "<group>"; };
 		FFD956242475664E00BA33B4 /* ModalDismissal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalDismissal.swift; sourceTree = "<group>"; };
@@ -233,7 +231,6 @@
 				FF103A242472917700909F0F /* Assets.xcassets */,
 				FF103A262472917700909F0F /* LaunchScreen.storyboard */,
 				FF103A292472917700909F0F /* Info.plist */,
-				FFD9561D24754AC800BA33B4 /* GoogleService-Info.plist */,
 				66CD94A52475EB4600E420A2 /* Localizable.strings */,
 			);
 			path = "coronasurveys-ios";
@@ -505,7 +502,6 @@
 				FF103A282472917700909F0F /* LaunchScreen.storyboard in Resources */,
 				66CD94A72475EB4600E420A2 /* Localizable.strings in Resources */,
 				FF103A252472917700909F0F /* Assets.xcassets in Resources */,
-				FFD9561E24754AC800BA33B4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
