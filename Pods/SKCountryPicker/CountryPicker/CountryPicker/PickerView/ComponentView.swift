@@ -38,15 +38,15 @@ internal class ComponentView: UIView {
         diallingCodeLabel.textColor = .darkGray
         diallingCodeLabel.font = UIFont.systemFont(ofSize: 11)
         addSubview(diallingCodeLabel)
+        setUp()
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
+    func setUp() {
         // Cell Size
         let height = frame.size.height
 

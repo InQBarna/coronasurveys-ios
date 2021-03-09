@@ -13,7 +13,7 @@ struct SplashScreenViewVM: Equatable {}
 class SplashScreenView: UIView, CleanView {
     typealias VMType = SplashScreenViewVM
 
-    static var emptySkeleton: SplashScreenViewVM = SplashScreenViewVM()
+    static var emptySkeleton = SplashScreenViewVM()
     var viewModel: SplashScreenViewVM = SplashScreenView.emptySkeleton
     var viewState: ViewState = .empty
 
@@ -37,6 +37,7 @@ class SplashScreenView: UIView, CleanView {
         setupConstraints()
     }
 
+    @available(*, unavailable)
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -97,6 +97,7 @@ class SocialCell: UITableViewCell, CellIdentifier {
         setupConstraints()
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -120,22 +121,22 @@ class SocialCell: UITableViewCell, CellIdentifier {
 
     private func setupView() {
         selectionStyle = .none
-        [stackView, followUsLabel, followUsDescriptionLabel].forEach { addSubview($0) }
+        [stackView, followUsLabel, followUsDescriptionLabel].forEach { contentView.addSubview($0) }
     }
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            followUsLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
-            followUsLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-            followUsLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            followUsLabel.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            followUsLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            followUsLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
 
             followUsDescriptionLabel.topAnchor.constraint(equalTo: followUsLabel.bottomAnchor, constant: 10),
-            followUsDescriptionLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-            followUsDescriptionLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            followUsDescriptionLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            followUsDescriptionLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
 
             stackView.topAnchor.constraint(equalTo: followUsDescriptionLabel.bottomAnchor, constant: 20),
-            stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            stackView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)
+            stackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            stackView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor)
         ])
     }
 

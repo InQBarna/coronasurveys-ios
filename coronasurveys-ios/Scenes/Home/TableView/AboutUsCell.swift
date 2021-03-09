@@ -41,6 +41,7 @@ class AboutUsCell: UITableViewCell, CellIdentifier {
         setupConstraints()
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -53,19 +54,19 @@ class AboutUsCell: UITableViewCell, CellIdentifier {
 
     private func setupView() {
         selectionStyle = .none
-        [titleLabel, valueLabel].forEach { addSubview($0) }
+        [titleLabel, valueLabel].forEach { contentView.addSubview($0) }
     }
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            titleLabel.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
 
             valueLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            valueLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-            valueLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-            valueLabel.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)
+            valueLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            valueLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+            valueLabel.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor)
         ])
     }
 }

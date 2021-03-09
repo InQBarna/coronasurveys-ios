@@ -9,34 +9,27 @@
 import UIKit
 
 open class CountryPickerView: UIPickerView {
-    private var selectedCountry: Country? {
-        didSet {
-            scrollToSelectedCountry()
-        }
-    }
-
+    private var selectedCountry: Country?
+    private let rowHeight: CGFloat = 45.0
     // ISO 3166-1 alpha-2 two-letter country codes.
-    private var countryCode: [String] = [String]() {
+    private var countryCodes = [String]() {
         didSet {
-            self.updatePickList()
+            updatePickList()
         }
     }
 
-    private var allCountryList: [Country] = [Country]()
+    private var allCountryList = [Country]()
 
     private var didSelectCountryCallback: ((_ country: Country) -> Void)?
 
-    private var pickList: [Country] = [Country]() {
+    private(set) var pickList = [Country]() {
         didSet {
-            self.reloadComponent(0)
+            reloadComponent(0)
         }
     }
 
     private func updatePickList() {
-        if countryCode.isEmpty {
-            return
-        }
-        var tempList = countryCode
+        var tempList = countryCodes
         let list = allCountryList.filter { (country) -> Bool in
             if let index = tempList.firstIndex(of: country.countryCode) {
                 tempList.remove(at: index)
@@ -47,13 +40,17 @@ open class CountryPickerView: UIPickerView {
         pickList = list
     }
 
-    init() {
+    init(allCountryList: [Country], selectedCountry: Country? = nil) {
         super.init(frame: CGRect.zero)
+        self.allCountryList = allCountryList
+        self.selectedCountry = selectedCountry
         configure()
     }
 
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
+        allCountryList = CountryManager.shared.countries
+        selectedCountry = CountryManager.shared.currentCountry
         configure()
     }
 
@@ -62,8 +59,6 @@ open class CountryPickerView: UIPickerView {
     }
 
     private func configure() {
-        selectedCountry = CountryManager.shared.currentCountry
-        allCountryList = CountryManager.shared.countries
         pickList = allCountryList
 
         delegate = self
@@ -81,24 +76,19 @@ open class CountryPickerView: UIPickerView {
         guard let selectedCountry = selectedCountry else {
             return
         }
-        if let index = CountryManager.shared.countries.firstIndex(where: { $0 == selectedCountry }) {
+        if let index = allCountryList.firstIndex(where: { $0 == selectedCountry }) {
             selectRow(index, inComponent: 0, animated: false)
         }
     }
 
     // ISO 3166-1 alpha-2 two-letter country codes.
     public func setPickList(codes: String...) {
-        countryCode = codes
+        countryCodes = codes
     }
 
-    public static func loadPickerView(didSelectCountry: @escaping (_ country: Country) -> Void) -> CountryPickerView {
-        let countryPicker = CountryPickerView()
+    public static func loadPickerView(allCountryList: [Country] = CountryManager.shared.countries, selectedCountry: Country? = CountryManager.shared.currentCountry, didSelectCountry: @escaping (_ country: Country) -> Void) -> CountryPickerView {
+        let countryPicker = CountryPickerView(allCountryList: allCountryList, selectedCountry: selectedCountry)
         countryPicker.didSelectCountryCallback = didSelectCountry
-        return countryPicker
-    }
-
-    public static func pickerView() -> CountryPickerView {
-        let countryPicker = CountryPickerView()
         return countryPicker
     }
 }
@@ -119,14 +109,15 @@ extension CountryPickerView: UIPickerViewDataSource {
 
 extension CountryPickerView: UIPickerViewDelegate {
     public func pickerView(_ pickerView: UIPickerView, viewForRow row: Int,
-                           forComponent component: Int, reusing view: UIView?) -> UIView {
+                           forComponent component: Int, reusing view: UIView?) -> UIView
+    {
         var reuseableView = view as? ComponentView
         if reuseableView == nil {
             let rect = CGRect(x: 0, y: 0, width: 200, height: 40.0)
             reuseableView = ComponentView(frame: rect)
         }
 
-        let country = CountryManager.shared.countries[row]
+        let country = pickList[row]
         reuseableView?.imageView.image = country.flag
         reuseableView?.countryNameLabel.text = country.countryName
         reuseableView?.diallingCodeLabel.text = country.dialingCode
@@ -135,11 +126,11 @@ extension CountryPickerView: UIPickerViewDelegate {
     }
 
     public func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        45.0
+        rowHeight
     }
 
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let country = CountryManager.shared.countries[row]
+        let country = pickList[row]
         didSelectCountryCallback?(country)
     }
 }

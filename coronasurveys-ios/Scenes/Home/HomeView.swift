@@ -29,7 +29,7 @@ struct HomeViewVM: Equatable {
 class HomeView: UIView, CleanView {
     typealias VMType = HomeViewVM
 
-    static var emptySkeleton: HomeViewVM = HomeViewVM(sections: [], deviceLocale: nil)
+    static var emptySkeleton = HomeViewVM(sections: [], deviceLocale: nil)
     var viewModel: HomeViewVM = HomeView.emptySkeleton
     var viewState: ViewState = .empty
 
@@ -126,6 +126,7 @@ class HomeView: UIView, CleanView {
         setupConstraints()
     }
 
+    @available(*, unavailable)
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

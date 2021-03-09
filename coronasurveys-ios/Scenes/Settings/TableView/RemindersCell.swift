@@ -45,6 +45,7 @@ class RemindersCell: UITableViewCell, CellIdentifier {
         setupConstraints()
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -57,18 +58,18 @@ class RemindersCell: UITableViewCell, CellIdentifier {
 
     private func setupView() {
         selectionStyle = .none
-        [titleLabel, switcher].forEach { addSubview($0) }
+        [titleLabel, switcher].forEach { contentView.addSubview($0) }
     }
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            titleLabel.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
 
-            switcher.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-            switcher.centerYAnchor.constraint(equalTo: centerYAnchor)
+            switcher.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+            switcher.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ])
     }
 

@@ -27,8 +27,8 @@ class WebViewCell: UITableViewCell, CellIdentifier {
             "meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';" +
             "var head = document.getElementsByTagName('head')[0];" +
             "head.appendChild(meta);"
-        let script: WKUserScript = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
-        let userContentController: WKUserContentController = WKUserContentController()
+        let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+        let userContentController = WKUserContentController()
         userContentController.addUserScript(script)
 
         let webConfig = WKWebViewConfiguration()
@@ -53,6 +53,7 @@ class WebViewCell: UITableViewCell, CellIdentifier {
         setupConstraints()
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -71,20 +72,20 @@ class WebViewCell: UITableViewCell, CellIdentifier {
 
     private func setupView() {
         selectionStyle = .none
-        [titleLabel, webKitView].forEach { addSubview($0) }
+        [titleLabel, webKitView].forEach { contentView.addSubview($0) }
     }
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            titleLabel.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
 
             webKitView.heightAnchor.constraint(equalToConstant: 380),
             webKitView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            webKitView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-            webKitView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-            webKitView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)
+            webKitView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            webKitView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+            webKitView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor)
         ])
     }
 }

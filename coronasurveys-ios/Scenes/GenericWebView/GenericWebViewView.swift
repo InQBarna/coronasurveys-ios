@@ -16,7 +16,7 @@ struct GenericWebViewViewVM: Equatable {
 class GenericWebViewView: UIView, CleanView {
     typealias VMType = GenericWebViewViewVM
 
-    static var emptySkeleton: GenericWebViewViewVM = GenericWebViewViewVM(url: nil)
+    static var emptySkeleton = GenericWebViewViewVM(url: nil)
     var viewModel: GenericWebViewViewVM = GenericWebViewView.emptySkeleton
     var viewState: ViewState = .empty
 
@@ -37,8 +37,8 @@ class GenericWebViewView: UIView, CleanView {
             "meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';" +
             "var head = document.getElementsByTagName('head')[0];" +
             "head.appendChild(meta);"
-        let script: WKUserScript = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
-        let userContentController: WKUserContentController = WKUserContentController()
+        let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+        let userContentController = WKUserContentController()
         userContentController.addUserScript(script)
 
         let webConfig = WKWebViewConfiguration()
@@ -78,6 +78,7 @@ class GenericWebViewView: UIView, CleanView {
         setupConstraints()
     }
 
+    @available(*, unavailable)
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

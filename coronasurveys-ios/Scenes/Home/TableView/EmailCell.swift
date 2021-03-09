@@ -38,6 +38,7 @@ class EmailCell: UITableViewCell, CellIdentifier {
         setupConstraints()
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -46,15 +47,15 @@ class EmailCell: UITableViewCell, CellIdentifier {
 
     private func setupView() {
         selectionStyle = .none
-        [emailButton].forEach { addSubview($0) }
+        [emailButton].forEach { contentView.addSubview($0) }
     }
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            emailButton.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
-            emailButton.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-            emailButton.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-            emailButton.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)
+            emailButton.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            emailButton.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            emailButton.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+            emailButton.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor)
         ])
     }
 

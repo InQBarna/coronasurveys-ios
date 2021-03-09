@@ -77,8 +77,8 @@ class CountryCell: UITableViewCell {
         return stackView
     }()
 
-    private var countryFlagStackView: UIStackView = UIStackView()
-    private var countryCheckStackView: UIStackView = UIStackView()
+    private(set) var countryFlagStackView = UIStackView()
+    private var countryCheckStackView = UIStackView()
 
     // MARK: - Model
 

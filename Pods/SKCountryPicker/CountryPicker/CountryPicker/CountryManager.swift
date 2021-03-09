@@ -24,19 +24,27 @@ public enum CountryFilterOption {
 open class CountryManager {
     // MARK: - variable
 
-    private(set) var countries = [Country]()
+    public var countries = [Country]()
 
     private var countriesFilePath: String? {
-        let bundle = Bundle(for: CountryManager.self)
+        #if SWIFT_PACKAGE
+            let bundle = Bundle.module
+        #else
+            let bundle = Bundle(for: CountryManager.self)
+        #endif
+
         let countriesPath = bundle.path(forResource: "CountryPickerController.bundle/countries", ofType: "plist")
         return countriesPath
     }
 
     public static var shared: CountryManager = {
         let countryManager = CountryManager()
-        do { try countryManager.loadCountries()
+        do {
+            try countryManager.loadCountries()
         } catch {
-            print(error.localizedDescription)
+            #if DEBUG
+                print(error.localizedDescription)
+            #endif
         }
         return countryManager
     }()
@@ -69,7 +77,8 @@ open class CountryManager {
         let url = URL(fileURLWithPath: countriesFilePath)
 
         guard let rawData = try? Data(contentsOf: url),
-            let countryCodes = try? PropertyListSerialization.propertyList(from: rawData, format: nil) as? [String] else {
+              let countryCodes = try? PropertyListSerialization.propertyList(from: rawData, format: nil) as? [String]
+        else {
             throw "Missing array of countries plist in CountryPicker"
         }
 
@@ -81,8 +90,10 @@ open class CountryManager {
         countries.append(contentsOf: sortedCountries)
     }
 
-    func allCountries() -> [Country] {
-        countries
+    func allCountries(_ favoriteCountriesLocaleIdentifiers: [String]) -> [Country] {
+        favoriteCountriesLocaleIdentifiers.compactMap {
+            country(withCode: $0)
+        } + countries
     }
 }
 

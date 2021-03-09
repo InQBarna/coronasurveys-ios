@@ -23,54 +23,71 @@ public enum CountryFlagStyle {
 open class CountryPickerController: UIViewController {
     // MARK: - Variables
 
-    var countries = [Country]() {
+    internal var countries = [Country]() {
         didSet {
             tableView.reloadData()
         }
     }
 
-    var filterCountries = [Country]() {
+    internal var filterCountries = [Country]() {
         didSet {
             tableView.reloadData()
         }
     }
 
-    var applySearch = false
-    var callBack: ((_ choosenCountry: Country) -> Void)?
+    internal var applySearch = false
+    // To be set by client
+    public var callBack: ((_ choosenCountry: Country) -> Void)?
 
-    let bundle = Bundle(for: CountryPickerController.self)
+    #if SWIFT_PACKAGE
+        let bundle = Bundle.module
+    #else
+        let bundle = Bundle(for: CountryPickerController.self)
+    #endif
 
     // MARK: View and ViewController
 
-    var presentingVC: UIViewController?
-    var searchController = UISearchController(searchResultsController: nil)
-    let tableView = UITableView()
+    internal var presentingVC: UIViewController?
+    internal var searchController = UISearchController(searchResultsController: nil)
+    internal let tableView = UITableView()
+    public var favoriteCountriesLocaleIdentifiers = [String]() {
+        didSet {
+            loadCountries()
+            tableView.reloadData()
+        }
+    }
+
+    internal var isFavoriteEnable: Bool { !favoriteCountries.isEmpty }
+    internal var favoriteCountries: [Country] {
+        favoriteCountriesLocaleIdentifiers
+            .compactMap { CountryManager.shared.country(withCode: $0) }
+    }
 
     /// Properties for countryPicker controller
     public var statusBarStyle: UIStatusBarStyle? = .default
     public var isStatusBarVisible = true
 
-    public var flagStyle: CountryFlagStyle = CountryFlagStyle.normal {
+    public var flagStyle = CountryFlagStyle.normal {
         didSet { tableView.reloadData() }
     }
 
-    public var labelFont: UIFont = UIFont.preferredFont(forTextStyle: .title3) {
+    public var labelFont = UIFont.preferredFont(forTextStyle: .title3) {
         didSet { tableView.reloadData() }
     }
 
-    public var labelColor: UIColor = UIColor.black {
+    public var labelColor = UIColor.black {
         didSet { tableView.reloadData() }
     }
 
-    public var detailFont: UIFont = UIFont.preferredFont(forTextStyle: .subheadline) {
+    public var detailFont = UIFont.preferredFont(forTextStyle: .subheadline) {
         didSet { tableView.reloadData() }
     }
 
-    public var detailColor: UIColor = UIColor.lightGray {
+    public var detailColor = UIColor.lightGray {
         didSet { tableView.reloadData() }
     }
 
-    public var separatorLineColor: UIColor = UIColor(red: 249 / 255.0, green: 248 / 255.0, blue: 252 / 255.0, alpha: 1.0) {
+    public var separatorLineColor = UIColor(red: 249 / 255.0, green: 248 / 255.0, blue: 252 / 255.0, alpha: 1.0) {
         didSet { tableView.reloadData() }
     }
 
@@ -88,9 +105,8 @@ open class CountryPickerController: UIViewController {
 
     // MARK: - View life cycle
 
-    fileprivate func setUpsSearchController() {
+    private func setUpsSearchController() {
         searchController.hidesNavigationBarDuringPresentation = true
-        searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.barStyle = .default
         searchController.searchBar.sizeToFit()
         searchController.searchBar.delegate = self
@@ -187,7 +203,8 @@ open class CountryPickerController: UIViewController {
 
     @discardableResult
     open class func presentController(on viewController: UIViewController,
-                                      handler: @escaping (_ country: Country) -> Void) -> CountryPickerController {
+                                      handler: @escaping (_ country: Country) -> Void) -> CountryPickerController
+    {
         let controller = CountryPickerController()
         controller.presentingVC = viewController
         controller.callBack = handler
@@ -198,7 +215,7 @@ open class CountryPickerController: UIViewController {
 
     // MARK: - Cross Button Action
 
-    @objc func crossButtonClicked(_ sender: UIBarButtonItem) {
+    @objc private func crossButtonClicked(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
 }
@@ -207,7 +224,7 @@ open class CountryPickerController: UIViewController {
 
 internal extension CountryPickerController {
     func loadCountries() {
-        countries = CountryManager.shared.allCountries()
+        countries = CountryManager.shared.allCountries(favoriteCountriesLocaleIdentifiers)
     }
 
     ///
@@ -299,7 +316,9 @@ extension CountryPickerController: UITableViewDelegate, UITableViewDataSource {
         dismiss(animated: dismissWithAnimation, completion: nil)
     }
 
-    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath)
+        -> CGFloat
+    {
         60.0
     }
 }
@@ -310,7 +329,7 @@ extension CountryPickerController: UISearchBarDelegate {
     public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let searchTextTrimmed = searchBar.text?.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
 
-        guard let searchText = searchTextTrimmed, searchText.isEmpty == false else {
+        guard let searchText = searchTextTrimmed, !searchText.isEmpty else {
             applySearch = false
             filterCountries.removeAll()
             tableView.reloadData()
@@ -320,28 +339,7 @@ extension CountryPickerController: UISearchBarDelegate {
         applySearch = true
         filterCountries.removeAll()
 
-        let filteredCountries = countries.compactMap { (country) -> Country? in
-
-            let countryMatchFound = country.countryName.lowercased().contains(searchText)
-
-            // Filter country by country name first character
-            if CountryManager.shared.defaultFilter == .countryName, countryMatchFound {
-                return country
-            }
-
-            // Filter country by country code and utilise `CountryFilterOptions`
-            if CountryManager.shared.filters.contains(.countryCode), countryMatchFound {
-                return country
-            }
-
-            // Filter country by digit country code and utilise `CountryFilterOptions`
-            if CountryManager.shared.filters.contains(.countryDialCode),
-                let digitCountryCode = country.digitCountrycode, digitCountryCode.contains(searchText) {
-                return country
-            }
-
-            return nil
-        }
+        let filteredCountries = CountryPickerEngine().filterCountries(searchText: searchText)
 
         // Append filtered countries
         filterCountries.append(contentsOf: filteredCountries)

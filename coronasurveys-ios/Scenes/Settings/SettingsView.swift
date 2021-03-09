@@ -19,7 +19,7 @@ struct SettingsViewVM: Equatable {
 class SettingsView: UIView, CleanView {
     typealias VMType = SettingsViewVM
 
-    static var emptySkeleton: SettingsViewVM = SettingsViewVM(sections: [])
+    static var emptySkeleton = SettingsViewVM(sections: [])
     var viewModel: SettingsViewVM = SettingsView.emptySkeleton
     var viewState: ViewState = .empty
 
@@ -45,6 +45,7 @@ class SettingsView: UIView, CleanView {
         setupConstraints()
     }
 
+    @available(*, unavailable)
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

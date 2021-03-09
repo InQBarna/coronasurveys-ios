@@ -12,34 +12,38 @@ struct Animate {
     static let damping: CGFloat = 0.7
 
     static func spring(_ damping: CGFloat = Animate.damping,
-                       _ animations: @escaping () -> Void) {
+                       _ animations: @escaping () -> Void)
+    {
         Animate.spring(damping, {
             animations()
-    }, completion: nil)
+        }, completion: nil)
     }
 
     static func spring(_ damping: CGFloat = Animate.damping,
                        _ animations: @escaping () -> Void,
-                       completion: ((Bool) -> Void)? = nil) {
+                       completion: ((Bool) -> Void)? = nil)
+    {
         Animate.spring(damping, 0.5, {
             animations()
-    }, completion: completion)
+        }, completion: completion)
     }
 
     static func spring(_ damping: CGFloat = Animate.damping,
                        _ duration: TimeInterval = 0.5,
                        _ animations: @escaping () -> Void,
-                       completion: ((Bool) -> Void)? = nil) {
+                       completion: ((Bool) -> Void)? = nil)
+    {
         Animate.spring(damping, duration, 0.0, {
             animations()
-    }, completion: completion)
+        }, completion: completion)
     }
 
     static func spring(_ damping: CGFloat = Animate.damping,
                        _ duration: TimeInterval = 0.5,
                        _ delay: TimeInterval = 0.0,
                        _ animations: @escaping () -> Void,
-                       completion: ((Bool) -> Void)? = nil) {
+                       completion: ((Bool) -> Void)? = nil)
+    {
         guard duration != 0.0 else {
             animations()
             return

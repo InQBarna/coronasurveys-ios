@@ -10,7 +10,7 @@ import Foundation
 import UserNotifications
 
 class PreferencesStore: PreferencesStoreProtocol {
-    private struct Constants {
+    private enum Constants {
         static let notificationIdentifier: String = "SurveyReminder"
     }
 
