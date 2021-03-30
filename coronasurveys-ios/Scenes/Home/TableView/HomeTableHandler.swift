@@ -50,6 +50,7 @@ class HomeTableHandler: NSObject, UITableViewDelegate, UITableViewDataSource {
         tableView?.register(cell: SocialCell.self)
         tableView?.register(cell: WebViewCell.self)
         tableView?.register(cell: EmailCell.self)
+        tableView?.register(cell: ImageCell.self)
     }
 
     // MARK: Data store
@@ -83,6 +84,10 @@ class HomeTableHandler: NSObject, UITableViewDelegate, UITableViewDataSource {
         case .contactUs:
             let cell = tableView.dequeue(cell: EmailCell.self, at: indexPath)
             cell.delegate = self
+            return cell
+        case let .image(title, url):
+            let cell = tableView.dequeue(cell: ImageCell.self, at: indexPath)
+            cell.setup(title: title, url: url)
             return cell
         }
     }

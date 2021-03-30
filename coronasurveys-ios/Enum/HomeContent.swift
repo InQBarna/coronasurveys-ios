@@ -12,6 +12,7 @@ enum HomeContent: Equatable {
     case summary(text: String)
     case about(String?)
     case webViewPlot(title: String, url: String?)
+    case image(title: String, url: String?)
     case followUs(institutions: [SocialNetwork])
     case contactUs
 }

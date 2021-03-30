@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		447E6B5F2612210200E483C3 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447E6B5E2612210200E483C3 /* ImageCell.swift */; };
 		66CD949F2475E82300E420A2 /* L10N.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CD949E2475E82300E420A2 /* L10N.swift */; };
 		66CD94A72475EB4600E420A2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 66CD94A52475EB4600E420A2 /* Localizable.strings */; };
 		A2BDADE4CF619D282FF95F74 /* Pods_coronasurveys_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCBC9011165C55E5798041E3 /* Pods_coronasurveys_ios.framework */; };
@@ -83,6 +84,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		447E6B5E2612210200E483C3 /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		5A21360A920E10886BD8E95F /* Pods-coronasurveys-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coronasurveys-ios.release.xcconfig"; path = "Target Support Files/Pods-coronasurveys-ios/Pods-coronasurveys-ios.release.xcconfig"; sourceTree = "<group>"; };
 		66CD949E2475E82300E420A2 /* L10N.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = L10N.swift; sourceTree = "<group>"; };
 		66CD94A62475EB4600E420A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -399,6 +401,7 @@
 		FFD955FD247401B800BA33B4 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
+				447E6B5E2612210200E483C3 /* ImageCell.swift */,
 				FFD955FE247401C500BA33B4 /* HomeTableHandler.swift */,
 				FFD956042474034900BA33B4 /* SummaryCell.swift */,
 				FFD9560A2474186F00BA33B4 /* SocialCell.swift */,
@@ -647,6 +650,7 @@
 				FFA47D5A2472DB2600A92D19 /* EndFormViewController.swift in Sources */,
 				FF103A3924729A2900909F0F /* HomePresenter.swift in Sources */,
 				FFA47D662472DD2300A92D19 /* LargeButton.swift in Sources */,
+				447E6B5F2612210200E483C3 /* ImageCell.swift in Sources */,
 				FFD9562A2475760A00BA33B4 /* MailHelper.swift in Sources */,
 				FF103A6E2472D20200909F0F /* SettingsPresenter.swift in Sources */,
 				FF103A712472D20200909F0F /* SettingsModels.swift in Sources */,

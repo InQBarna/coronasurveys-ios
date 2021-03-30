@@ -18,7 +18,7 @@ protocol HomeBusinessLogic {
 }
 
 protocol HomeDataStore: DependencyInjectable {
-    var countryCode: String? { get }
+    var countryCode: String { get }
     var languageCode: String? { get }
 }
 
@@ -29,8 +29,8 @@ class HomeInteractor: HomeBusinessLogic, HomeDataStore {
 
     var context: [Dependency: Any?]?
 
-    var countryCode: String? {
-        preferencesWorker.retrieveSelectedCountry() ?? NSLocale.current.regionCode
+    var countryCode: String {
+        preferencesWorker.retrieveSelectedCountry() ?? NSLocale.current.regionCode ?? "US"
     }
 
     var languageCode: String? {
@@ -44,7 +44,7 @@ class HomeInteractor: HomeBusinessLogic, HomeDataStore {
     // MARK: Business logic
 
     func prepareView(request: Home.PrepareView.Request) {
-        let response = Home.PrepareView.Response(countryCode: countryCode?.uppercased())
+        let response = Home.PrepareView.Response(countryCode: countryCode.uppercased())
         presenter?.presentView(response: response)
     }
 

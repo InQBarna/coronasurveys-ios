@@ -63,10 +63,8 @@ class HomeRouter: NSObject, HomeRoutingLogic, HomeDataPassing {
     func passDataToForm(source: HomeDataStore, destination: inout GenericWebViewDataStore) {
         destination.context = source.context
 
-        if let countryCode = source.countryCode,
-           let languageCode = source.languageCode
-        {
-            destination.webViewURL = Configuration.surveyUrl(countryCode: countryCode, languageCode: languageCode)
+        if let languageCode = source.languageCode {
+            destination.webViewURL = Configuration.surveyUrl(countryCode: source.countryCode, languageCode: languageCode)
         }
     }
 }

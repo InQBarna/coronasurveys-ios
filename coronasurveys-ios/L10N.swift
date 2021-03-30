@@ -293,7 +293,7 @@ extension L10N {
 
       *Default value (en)*
 
-      *“Percentage of population with symptoms estimated by @CoronaSurveys”*
+      *“Coronasurveys estimates of active cases”*
      */
     static var percentagePopulationSymptoms: String {
         NSLocalizedString("percentage_population_symptoms", comment: "")

@@ -14,6 +14,7 @@ struct Configuration {
     static let facebookUrl: String = "https://www.facebook.com/coronasurveys/"
     static let twitterUrl: String = "https://twitter.com/coronasurveys"
     static let instagramUrl: String = "https://www.instagram.com/coronasurveys/"
+    static let imageUrl: String = "https://coronasurveys.org/assets/images/XX-appgraph.png"
 
     static var populationSymptomsPlotUrl: String {
         "https://coronasurveys.org/grafana/d-solo/G_Aw4CrZk/coronasurveys?tab=advanced&panelId=20&orgId=1&from=1584576000000"

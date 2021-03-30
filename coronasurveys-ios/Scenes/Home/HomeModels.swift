@@ -19,7 +19,7 @@ enum Home {
         struct Request {}
 
         struct Response {
-            let countryCode: String?
+            let countryCode: String
         }
 
         struct ViewModel {

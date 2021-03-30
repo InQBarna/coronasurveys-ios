@@ -20,19 +20,11 @@ protocol HomePresentationLogic {
 class HomePresenter: HomePresentationLogic {
     weak var viewController: HomeDisplayLogic?
 
-    let sections: [HomeContent] = [
-        .summary(text: L10N.projectSummaryText),
-        .webViewPlot(title: L10N.percentagePopulationSymptoms, url: Configuration.populationSymptomsPlotUrl),
-        .about(L10N.aboutProjectText),
-        .followUs(institutions: [.facebook, .instagram, .twitter]),
-        .contactUs
-    ]
-
     func presentView(response: Home.PrepareView.Response) {
         let viewModel = Home.PrepareView.ViewModel(
             title: L10N.coronasurveys,
             countryCode: response.countryCode,
-            sections: sections
+            sections: sectionsForCountryCode(response.countryCode)
         )
         viewController?.displayView(viewModel: viewModel)
     }
@@ -40,5 +32,18 @@ class HomePresenter: HomePresentationLogic {
     func presentCountryCode(response: Home.UpdateCountryCode.Response) {
         let viewModel = Home.UpdateCountryCode.ViewModel(countryCode: response.countryCode)
         viewController?.displayCountryCode(viewModel: viewModel)
+    }
+
+    func sectionsForCountryCode(_ countryCode: String) -> [HomeContent] {
+        let imageUrl = Configuration.imageUrl.replacingOccurrences(of: "XX", with: countryCode)
+
+        return [
+            .summary(text: L10N.projectSummaryText),
+//            .webViewPlot(title: L10N.percentagePopulationSymptoms, url: Configuration.populationSymptomsPlotUrl),
+            .image(title: L10N.percentagePopulationSymptoms, url: imageUrl),
+            .about(L10N.aboutProjectText),
+            .followUs(institutions: [.facebook, .instagram, .twitter]),
+            .contactUs
+        ]
     }
 }
