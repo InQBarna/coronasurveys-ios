@@ -11,9 +11,6 @@ check_usage: true
 # titleLabel.text = L10N.wonderfulIdea
 use_resource_class: true
 
-# Make resource class available to Objective-C
-objc_support: false
-
 # Enable if you want Fluent to convert your keys (that should be snake_case to camelCase when populating the L10N struct
 camel_case_keys: true
 
@@ -25,9 +22,9 @@ severity: warning
 
 # Dictionary specifying which actions Fluent should run when running in a particular XCode configuration (debug, release,…)
 actions:
-  debug:
-  - check
   release:
+  - check
+  debug:
   - check
 
 # API Key to be used when Fluent shares data with a cloud service

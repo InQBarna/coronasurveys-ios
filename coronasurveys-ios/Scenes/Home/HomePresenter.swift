@@ -39,8 +39,10 @@ class HomePresenter: HomePresentationLogic {
 
         return [
             .summary(text: L10N.projectSummaryText),
-//            .webViewPlot(title: L10N.percentagePopulationSymptoms, url: Configuration.populationSymptomsPlotUrl),
             .image(title: L10N.percentagePopulationSymptoms, url: imageUrl),
+            .titleBody(title: L10N.howItWorksTitle, body: L10N.howItWorksBody),
+            .titleBody(title: L10N.whyImportantTitle, body: L10N.whyImportantBody),
+            .titleBody(title: L10N.howHelpTitle, body: L10N.howHelpBody),
             .about(L10N.aboutProjectText),
             .followUs(institutions: [.facebook, .instagram, .twitter]),
             .contactUs

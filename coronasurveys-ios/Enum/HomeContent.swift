@@ -15,4 +15,5 @@ enum HomeContent: Equatable {
     case image(title: String, url: String?)
     case followUs(institutions: [SocialNetwork])
     case contactUs
+    case titleBody(title: String?, body: String?)
 }

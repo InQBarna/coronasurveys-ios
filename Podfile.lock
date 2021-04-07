@@ -1,11 +1,11 @@
 PODS:
-  - Fluent (0.4.0)
+  - Fluent (0.7.1)
   - SKCountryPicker (1.3.0)
   - SwiftFormat/CLI (0.47.13)
   - SwiftLint (0.43.1)
 
 DEPENDENCIES:
-  - Fluent (from `http://gitlab.inqbarna.com/romaxin/fluent-ios/-/raw/0.4.0/Fluent.podspec`)
+  - Fluent (from `http://gitlab.inqbarna.com/romaxin/fluent-ios/-/raw/0.7.1/Fluent.podspec`)
   - SKCountryPicker
   - SwiftFormat/CLI
   - SwiftLint
@@ -18,14 +18,14 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   Fluent:
-    :podspec: http://gitlab.inqbarna.com/romaxin/fluent-ios/-/raw/0.4.0/Fluent.podspec
+    :podspec: http://gitlab.inqbarna.com/romaxin/fluent-ios/-/raw/0.7.1/Fluent.podspec
 
 SPEC CHECKSUMS:
-  Fluent: 4fb0894576471d635ab4d89e6b36b3c25a9c4c02
+  Fluent: c52096879097f0fcbf2d0d53f4f3013c0381fbca
   SKCountryPicker: e057b1f6592aeff19789983f104e0432d6079bfa
   SwiftFormat: 73573b89257437c550b03d934889725fbf8f75e5
   SwiftLint: 99f82d07b837b942dd563c668de129a03fc3fb52
 
-PODFILE CHECKSUM: f136e4b95640584968eda7d3b87521b57898926a
+PODFILE CHECKSUM: db868610c359c2b1e5f7cff902e415d48a1e6f30
 
 COCOAPODS: 1.10.1

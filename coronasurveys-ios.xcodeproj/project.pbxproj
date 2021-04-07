@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		442CF621261D9EC7001493FB /* TitleBodyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442CF620261D9EC7001493FB /* TitleBodyCell.swift */; };
 		447E6B5F2612210200E483C3 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447E6B5E2612210200E483C3 /* ImageCell.swift */; };
 		66CD949F2475E82300E420A2 /* L10N.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CD949E2475E82300E420A2 /* L10N.swift */; };
 		66CD94A72475EB4600E420A2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 66CD94A52475EB4600E420A2 /* Localizable.strings */; };
@@ -84,6 +85,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		442CF620261D9EC7001493FB /* TitleBodyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleBodyCell.swift; sourceTree = "<group>"; };
 		447E6B5E2612210200E483C3 /* ImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		5A21360A920E10886BD8E95F /* Pods-coronasurveys-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-coronasurveys-ios.release.xcconfig"; path = "Target Support Files/Pods-coronasurveys-ios/Pods-coronasurveys-ios.release.xcconfig"; sourceTree = "<group>"; };
 		66CD949E2475E82300E420A2 /* L10N.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = L10N.swift; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 		FFD955FD247401B800BA33B4 /* TableView */ = {
 			isa = PBXGroup;
 			children = (
+				442CF620261D9EC7001493FB /* TitleBodyCell.swift */,
 				447E6B5E2612210200E483C3 /* ImageCell.swift */,
 				FFD955FE247401C500BA33B4 /* HomeTableHandler.swift */,
 				FFD956042474034900BA33B4 /* SummaryCell.swift */,
@@ -446,7 +449,7 @@
 			buildConfigurationList = FF103A2C2472917700909F0F /* Build configuration list for PBXNativeTarget "coronasurveys-ios" */;
 			buildPhases = (
 				301A6A201D9FFB405ADE1398 /* [CP] Check Pods Manifest.lock */,
-				66EB170D247C0D2700E646A3 /* ShellScript */,
+				66EB170D247C0D2700E646A3 /* [IQ] Fluent Script */,
 				FF103A142472917700909F0F /* Sources */,
 				FF103A152472917700909F0F /* Frameworks */,
 				FF103A162472917700909F0F /* Resources */,
@@ -571,7 +574,7 @@
 			shellScript = "${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat $SRCROOT\n";
 			showEnvVarsInLog = 0;
 		};
-		66EB170D247C0D2700E646A3 /* ShellScript */ = {
+		66EB170D247C0D2700E646A3 /* [IQ] Fluent Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -580,6 +583,7 @@
 			);
 			inputPaths = (
 			);
+			name = "[IQ] Fluent Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -635,6 +639,7 @@
 				FFD956202475646D00BA33B4 /* SocialNetwork.swift in Sources */,
 				FF103A4524729BAC00909F0F /* HomeView.swift in Sources */,
 				FFD9562824756AC200BA33B4 /* NotificationInterval.swift in Sources */,
+				442CF621261D9EC7001493FB /* TitleBodyCell.swift in Sources */,
 				FFA47D582472DB2600A92D19 /* EndFormRouter.swift in Sources */,
 				FFA47D562472DB2600A92D19 /* EndFormPresenter.swift in Sources */,
 				FFD956262475664E00BA33B4 /* ModalDismissal.swift in Sources */,
